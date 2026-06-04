@@ -1,3 +1,4 @@
 {
-  "excelFile": "C:/Users/Kristian/OneDrive/VVS/MAIN_DB.xlsx"
+  "excelFile": "C:/Users/Admin/OneDrive/VVS/MAIN_DB.xlsx",
+  "outputJson": "public/data/services.json"
 }

@@ -1,0 +1,514 @@
+{
+    "navigation": {
+        "Kök": {
+            "Köksblandare": {
+                "FM Mattsson (9000E)": {
+                    "Byte / montering": "1010"
+                },
+                "Mora Armatur (MMIX K5": {
+                    "Byte / montering": "1011"
+                }
+            },
+            "Köksvattenlås": {
+                "Ospec (standard teleskop)": {
+                    "Byte / montering": "1020"
+                }
+            }
+        },
+        "Vatten": {
+            "Vattenfelsbrytare": {
+                "LK CubicSecure": {
+                    "Byte / montering": "2010"
+                }
+            },
+            "Varmvattenberedare": {
+                "200 RF (Nibe Compact)": {
+                    "Byte / Installation": "2020"
+                },
+                "300 RF (Nibe Compact)": {
+                    "Byte / Installation": "2021"
+                },
+                "VPB S200 (Slinga)": {
+                    "Byte / Installation": "2022"
+                },
+                "VPB S300 (Slinga)": {
+                    "Byte / Installation": "2023"
+                },
+                "300 RF SC (Smart Control)": {
+                    "Byte / Installation": "2024"
+                }
+            },
+            "Vattenmätarkoppel": {
+                "LK 580 (Standard konsol)": {
+                    "Byte / montering": "2030"
+                },
+                "LK 581": {
+                    "Byte / montering": "2031"
+                },
+                "LK 582": {
+                    "Byte / montering": "2032"
+                }
+            },
+            "Gatuavstängningsventil": {
+                "(Ospec Ersättningsventil)": {
+                    "Byte av A+B ventil i villa": "2040"
+                }
+            }
+        },
+        "Badrum": {
+            "Tvättställsblandare": {
+                "FM Mattsson": {
+                    "Byte / montering": "3010"
+                },
+                "Mora Armatur": {
+                    "Byte / montering": "3011"
+                },
+                "Blandare med handdusch": {
+                    "Byte / montering": "3012"
+                }
+            },
+            "Duschblandare": {
+                "FM Mattsson (160cc)": {
+                    "Byte / montering": "3020"
+                },
+                "Mora Armatur (160cc)": {
+                    "Byte / montering": "3021"
+                }
+            },
+            "Tvättställ": {
+                "FM Mattsson": {
+                    "Montering Tvättställ med blandare": "3030"
+                },
+                "Mora Armatur": {
+                    "Montering Tvättställ med blandare": "3031"
+                }
+            },
+            "Badkarsblandare": {
+                "FM Mattsson": {
+                    "Montering badkarsblandare": "3040"
+                },
+                "Mora Armatur": {
+                    "Byte / montering": "3041"
+                }
+            },
+            "Duschkabin ": {
+                "IFÖ Solid Standard": {
+                    "Montering av duschkabin": "3050"
+                }
+            },
+            "Toalettstol": {
+                "IFÖ (RIMFREE/Spira)": {
+                    "Byte / montering": "3060"
+                }
+            }
+        },
+        "Trädgård": {
+            "Vattenutkastare": {
+                "FM Mattsson (Frostsäker)": {
+                    "Byte / montering": "4010"
+                }
+            }
+        },
+        "Värme": {
+            "Radiator": {
+                "Halrad, modell standard": {
+                    "Byte radiotor": "5010"
+                }
+            },
+            "Radiatorinstallation": {
+                "Halrad, modell standard": {
+                    "Montering och nyanslutning radiator": "5020"
+                }
+            },
+            "Radiatorventiler": {
+                "1-rörs system": {
+                    "Byte radiotorventiler": "5030"
+                },
+                "2-rörs system": {
+                    "Byte radiotorventiler": "5040"
+                }
+            },
+            "Expansionskärl": {
+                "Somatherm (12-18L)": {
+                    "Byte expansionskärl": "5050"
+                },
+                "Ospec": {
+                    "Byte expansionskärl": "5060"
+                }
+            },
+            "Cirkulationspump": {
+                "Wilo": {
+                    "Byte Cirkulationspump": "5070"
+                },
+                "Ospec": {
+                    "Byte Cirkulationspump": "5080"
+                }
+            }
+        }
+    },
+    "services": {
+        "1010": {
+            "serviceId": 1010,
+            "category": "Kök",
+            "serviceName": "Köksblandare",
+            "equipment": "FM Mattsson (9000E)",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 7903.0,
+                "discountPrice": 6955.0
+            }
+        },
+        "1011": {
+            "serviceId": 1011,
+            "category": "Kök",
+            "serviceName": "Köksblandare",
+            "equipment": "Mora Armatur (MMIX K5",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 7903.0,
+                "discountPrice": 6955.0
+            }
+        },
+        "1020": {
+            "serviceId": 1020,
+            "category": "Kök",
+            "serviceName": "Köksvattenlås",
+            "equipment": "Ospec (standard teleskop)",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 4400.0,
+                "discountPrice": 3768.0
+            }
+        },
+        "2010": {
+            "serviceId": 2010,
+            "category": "Vatten",
+            "serviceName": "Vattenfelsbrytare",
+            "equipment": "LK CubicSecure",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 11685.0,
+                "discountPrice": 10500.0
+            }
+        },
+        "2020": {
+            "serviceId": 2020,
+            "category": "Vatten",
+            "serviceName": "Varmvattenberedare",
+            "equipment": "200 RF (Nibe Compact)",
+            "work": "Byte / Installation",
+            "pricing": {
+                "fullPrice": 31845.0,
+                "discountPrice": 28979.0
+            }
+        },
+        "2021": {
+            "serviceId": 2021,
+            "category": "Vatten",
+            "serviceName": "Varmvattenberedare",
+            "equipment": "300 RF (Nibe Compact)",
+            "work": "Byte / Installation",
+            "pricing": {
+                "fullPrice": 32957.0,
+                "discountPrice": 29991.0
+            }
+        },
+        "2022": {
+            "serviceId": 2022,
+            "category": "Vatten",
+            "serviceName": "Varmvattenberedare",
+            "equipment": "VPB S200 (Slinga)",
+            "work": "Byte / Installation",
+            "pricing": {
+                "fullPrice": 48870.0,
+                "discountPrice": 39922.0
+            }
+        },
+        "2023": {
+            "serviceId": 2023,
+            "category": "Vatten",
+            "serviceName": "Varmvattenberedare",
+            "equipment": "VPB S300 (Slinga)",
+            "work": "Byte / Installation",
+            "pricing": {
+                "fullPrice": 38673.0,
+                "discountPrice": 35192.0
+            }
+        },
+        "2024": {
+            "serviceId": 2024,
+            "category": "Vatten",
+            "serviceName": "Varmvattenberedare",
+            "equipment": "300 RF SC (Smart Control)",
+            "work": "Byte / Installation",
+            "pricing": {
+                "fullPrice": 7000.0,
+                "discountPrice": 6500.0
+            }
+        },
+        "2030": {
+            "serviceId": 2030,
+            "category": "Vatten",
+            "serviceName": "Vattenmätarkoppel",
+            "equipment": "LK 580 (Standard konsol)",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 9965.0,
+                "discountPrice": 8218.0
+            }
+        },
+        "2031": {
+            "serviceId": 2031,
+            "category": "Vatten",
+            "serviceName": "Vattenmätarkoppel",
+            "equipment": "LK 581",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 9965.0,
+                "discountPrice": 8218.0
+            }
+        },
+        "2032": {
+            "serviceId": 2032,
+            "category": "Vatten",
+            "serviceName": "Vattenmätarkoppel",
+            "equipment": "LK 582",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 9965.0,
+                "discountPrice": 8218.0
+            }
+        },
+        "2040": {
+            "serviceId": 2040,
+            "category": "Vatten",
+            "serviceName": "Gatuavstängningsventil",
+            "equipment": "(Ospec Ersättningsventil)",
+            "work": "Byte av A+B ventil i villa",
+            "pricing": {
+                "fullPrice": 10565.0,
+                "discountPrice": 8819.0
+            }
+        },
+        "3010": {
+            "serviceId": 3010,
+            "category": "Badrum",
+            "serviceName": "Tvättställsblandare",
+            "equipment": "FM Mattsson",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 5350.0,
+                "discountPrice": 4718.0
+            }
+        },
+        "3011": {
+            "serviceId": 3011,
+            "category": "Badrum",
+            "serviceName": "Tvättställsblandare",
+            "equipment": "Mora Armatur",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 5350.0,
+                "discountPrice": 4718.0
+            }
+        },
+        "3012": {
+            "serviceId": 3012,
+            "category": "Badrum",
+            "serviceName": "Tvättställsblandare",
+            "equipment": "Blandare med handdusch",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 6581.0,
+                "discountPrice": 5949.0
+            }
+        },
+        "3020": {
+            "serviceId": 3020,
+            "category": "Badrum",
+            "serviceName": "Duschblandare",
+            "equipment": "FM Mattsson (160cc)",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 5323.0,
+                "discountPrice": 4849.0
+            }
+        },
+        "3021": {
+            "serviceId": 3021,
+            "category": "Badrum",
+            "serviceName": "Duschblandare",
+            "equipment": "Mora Armatur (160cc)",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 5323.0,
+                "discountPrice": 4849.0
+            }
+        },
+        "3030": {
+            "serviceId": 3030,
+            "category": "Badrum",
+            "serviceName": "Tvättställ",
+            "equipment": "FM Mattsson",
+            "work": "Montering Tvättställ med blandare",
+            "pricing": {
+                "fullPrice": 6850.0,
+                "discountPrice": 6218.0
+            }
+        },
+        "3031": {
+            "serviceId": 3031,
+            "category": "Badrum",
+            "serviceName": "Tvättställ",
+            "equipment": "Mora Armatur",
+            "work": "Montering Tvättställ med blandare",
+            "pricing": {
+                "fullPrice": 6850.0,
+                "discountPrice": 6218.0
+            }
+        },
+        "3040": {
+            "serviceId": 3040,
+            "category": "Badrum",
+            "serviceName": "Badkarsblandare",
+            "equipment": "FM Mattsson",
+            "work": "Montering badkarsblandare",
+            "pricing": {
+                "fullPrice": 6098.0,
+                "discountPrice": 5624.0
+            }
+        },
+        "3041": {
+            "serviceId": 3041,
+            "category": "Badrum",
+            "serviceName": "Badkarsblandare",
+            "equipment": "Mora Armatur",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 6098.0,
+                "discountPrice": 5624.0
+            }
+        },
+        "3050": {
+            "serviceId": 3050,
+            "category": "Badrum",
+            "serviceName": "Duschkabin ",
+            "equipment": "IFÖ Solid Standard",
+            "work": "Montering av duschkabin",
+            "pricing": {
+                "fullPrice": 40146.0,
+                "discountPrice": 35090.0
+            }
+        },
+        "3060": {
+            "serviceId": 3060,
+            "category": "Badrum",
+            "serviceName": "Toalettstol",
+            "equipment": "IFÖ (RIMFREE/Spira)",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 8903.0,
+                "discountPrice": 7955.0
+            }
+        },
+        "4010": {
+            "serviceId": 4010,
+            "category": "Trädgård",
+            "serviceName": "Vattenutkastare",
+            "equipment": "FM Mattsson (Frostsäker)",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 5603.0,
+                "discountPrice": 4655.0
+            }
+        },
+        "5010": {
+            "serviceId": 5010,
+            "category": "Värme",
+            "serviceName": "Radiator",
+            "equipment": "Halrad, modell standard",
+            "work": "Byte radiotor",
+            "pricing": {
+                "fullPrice": 10000.0,
+                "discountPrice": 9000.0
+            }
+        },
+        "5020": {
+            "serviceId": 5020,
+            "category": "Värme",
+            "serviceName": "Radiatorinstallation",
+            "equipment": "Halrad, modell standard",
+            "work": "Montering och nyanslutning radiator",
+            "pricing": {
+                "fullPrice": 12000.0,
+                "discountPrice": 11000.0
+            }
+        },
+        "5030": {
+            "serviceId": 5030,
+            "category": "Värme",
+            "serviceName": "Radiatorventiler",
+            "equipment": "1-rörs system",
+            "work": "Byte radiotorventiler",
+            "pricing": {
+                "fullPrice": 1500.0,
+                "discountPrice": 1200.0
+            }
+        },
+        "5040": {
+            "serviceId": 5040,
+            "category": "Värme",
+            "serviceName": "Radiatorventiler",
+            "equipment": "2-rörs system",
+            "work": "Byte radiotorventiler",
+            "pricing": {
+                "fullPrice": 1500.0,
+                "discountPrice": 1200.0
+            }
+        },
+        "5050": {
+            "serviceId": 5050,
+            "category": "Värme",
+            "serviceName": "Expansionskärl",
+            "equipment": "Somatherm (12-18L)",
+            "work": "Byte expansionskärl",
+            "pricing": {
+                "fullPrice": 4500.0,
+                "discountPrice": 4000.0
+            }
+        },
+        "5060": {
+            "serviceId": 5060,
+            "category": "Värme",
+            "serviceName": "Expansionskärl",
+            "equipment": "Ospec",
+            "work": "Byte expansionskärl",
+            "pricing": {
+                "fullPrice": 4000.0,
+                "discountPrice": 3700.0
+            }
+        },
+        "5070": {
+            "serviceId": 5070,
+            "category": "Värme",
+            "serviceName": "Cirkulationspump",
+            "equipment": "Wilo",
+            "work": "Byte Cirkulationspump",
+            "pricing": {
+                "fullPrice": 2000.0,
+                "discountPrice": 1800.0
+            }
+        },
+        "5080": {
+            "serviceId": 5080,
+            "category": "Värme",
+            "serviceName": "Cirkulationspump",
+            "equipment": "Ospec",
+            "work": "Byte Cirkulationspump",
+            "pricing": {
+                "fullPrice": 2000.0,
+                "discountPrice": 1800.0
+            }
+        }
+    }
+}
