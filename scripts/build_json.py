@@ -43,6 +43,8 @@ def build_service_catalog(df: pd.DataFrame) -> dict:
 def build_navigation_tree(df: pd.DataFrame) -> dict:
     """
     Build hierarchy tree used for navigation.
+    Order:
+    Category → ServiceName → ServiceWork → ServiceEquipment
     """
 
     tree = {}
@@ -58,9 +60,9 @@ def build_navigation_tree(df: pd.DataFrame) -> dict:
 
         tree.setdefault(category, {})
         tree[category].setdefault(service_name, {})
-        tree[category][service_name].setdefault(equipment, {})
+        tree[category][service_name].setdefault(work, {})
 
-        tree[category][service_name][equipment][work] = service_id
+        tree[category][service_name][work][equipment] = service_id
 
     return tree
 

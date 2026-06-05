@@ -14,12 +14,16 @@ type Service = {
   pricing: Pricing;
 };
 
-type ServicesJson = {
-  navigation: Record<string, any>;
-  services: Record<string, Service>;
+type NavigationLeaf = string;
+
+type NavigationLevel = {
+  [key: string]: NavigationLevel | NavigationLeaf;
 };
 
-type NavigationLevel = Record<string, any>;
+type ServicesJson = {
+  navigation: NavigationLevel;
+  services: Record<string, Service>;
+};
 
 export default function ServiceBrowser() {
   const [data, setData] = useState<ServicesJson | null>(null);

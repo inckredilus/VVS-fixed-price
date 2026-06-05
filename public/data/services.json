@@ -2,146 +2,119 @@
     "navigation": {
         "Kök": {
             "Köksblandare": {
-                "FM Mattsson (9000E)": {
-                    "Byte / montering": "1010"
-                },
-                "Mora Armatur (MMIX K5": {
-                    "Byte / montering": "1011"
+                "Byte / montering": {
+                    "FM Mattsson (9000E)": "1010",
+                    "Mora Armatur (MMIX K5)": "1011",
+                    "Ospec": "1012"
                 }
             },
             "Köksvattenlås": {
-                "Ospec (standard teleskop)": {
-                    "Byte / montering": "1020"
+                "Byte / montering": {
+                    "Ospec (standard teleskop)": "1020"
                 }
             }
         },
         "Vatten": {
             "Vattenfelsbrytare": {
-                "LK CubicSecure": {
-                    "Byte / montering": "2010"
+                "Byte / montering": {
+                    "LK CubicSecure": "2010"
                 }
             },
             "Varmvattenberedare": {
-                "200 RF (Nibe Compact)": {
-                    "Byte / Installation": "2020"
-                },
-                "300 RF (Nibe Compact)": {
-                    "Byte / Installation": "2021"
-                },
-                "VPB S200 (Slinga)": {
-                    "Byte / Installation": "2022"
-                },
-                "VPB S300 (Slinga)": {
-                    "Byte / Installation": "2023"
-                },
-                "300 RF SC (Smart Control)": {
-                    "Byte / Installation": "2024"
+                "Byte / Installation": {
+                    "200 RF (Nibe Compact)": "2020",
+                    "300 RF (Nibe Compact)": "2021",
+                    "VPB S200 (Slinga)": "2022",
+                    "VPB S300 (Slinga)": "2023",
+                    "300 RF SC (Smart Control)": "2024"
                 }
             },
             "Vattenmätarkoppel": {
-                "LK 580 (Standard konsol)": {
-                    "Byte / montering": "2030"
-                },
-                "LK 581": {
-                    "Byte / montering": "2031"
-                },
-                "LK 582": {
-                    "Byte / montering": "2032"
+                "Byte / montering": {
+                    "LK 580 (Standard konsol)": "2030",
+                    "LK 581": "2031",
+                    "LK 582": "2032"
                 }
             },
             "Gatuavstängningsventil": {
-                "(Ospec Ersättningsventil)": {
-                    "Byte av A+B ventil i villa": "2040"
+                "Byte av A+B ventil i villa": {
+                    "(Ospec Ersättningsventil)": "2040"
                 }
             }
         },
         "Badrum": {
             "Tvättställsblandare": {
-                "FM Mattsson": {
-                    "Byte / montering": "3010"
-                },
-                "Mora Armatur": {
-                    "Byte / montering": "3011"
-                },
-                "Blandare med handdusch": {
-                    "Byte / montering": "3012"
+                "Byte / montering": {
+                    "FM Mattsson": "3010",
+                    "Mora Armatur": "3011",
+                    "Blandare med handdusch": "3012"
                 }
             },
             "Duschblandare": {
-                "FM Mattsson (160cc)": {
-                    "Byte / montering": "3020"
-                },
-                "Mora Armatur (160cc)": {
-                    "Byte / montering": "3021"
+                "Byte / montering": {
+                    "FM Mattsson (160cc)": "3020",
+                    "Mora Armatur (160cc)": "3021"
                 }
             },
             "Tvättställ": {
-                "FM Mattsson": {
-                    "Montering Tvättställ med blandare": "3030"
-                },
-                "Mora Armatur": {
-                    "Montering Tvättställ med blandare": "3031"
+                "Montering Tvättställ med blandare": {
+                    "FM Mattsson": "3030",
+                    "Mora Armatur": "3031"
                 }
             },
             "Badkarsblandare": {
-                "FM Mattsson": {
-                    "Montering badkarsblandare": "3040"
+                "Montering badkarsblandare": {
+                    "FM Mattsson": "3040"
                 },
-                "Mora Armatur": {
-                    "Byte / montering": "3041"
+                "Byte / montering": {
+                    "Mora Armatur": "3041"
                 }
             },
             "Duschkabin ": {
-                "IFÖ Solid Standard": {
-                    "Montering av duschkabin": "3050"
+                "Montering av duschkabin": {
+                    "IFÖ Solid Standard": "3050"
                 }
             },
             "Toalettstol": {
-                "IFÖ (RIMFREE/Spira)": {
-                    "Byte / montering": "3060"
+                "Byte / montering": {
+                    "IFÖ (RIMFREE/Spira)": "3060"
                 }
             }
         },
         "Trädgård": {
             "Vattenutkastare": {
-                "FM Mattsson (Frostsäker)": {
-                    "Byte / montering": "4010"
+                "Byte / montering": {
+                    "FM Mattsson (Frostsäker)": "4010"
                 }
             }
         },
         "Värme": {
             "Radiator": {
-                "Halrad, modell standard": {
-                    "Byte radiotor": "5010"
+                "Byte radiotor": {
+                    "Halrad, modell standard": "5010"
                 }
             },
             "Radiatorinstallation": {
-                "Halrad, modell standard": {
-                    "Montering och nyanslutning radiator": "5020"
+                "Montering och nyanslutning radiator": {
+                    "Halrad, modell standard": "5020"
                 }
             },
             "Radiatorventiler": {
-                "1-rörs system": {
-                    "Byte radiotorventiler": "5030"
-                },
-                "2-rörs system": {
-                    "Byte radiotorventiler": "5040"
+                "Byte radiotorventiler": {
+                    "1-rörs system": "5030",
+                    "2-rörs system": "5040"
                 }
             },
             "Expansionskärl": {
-                "Somatherm (12-18L)": {
-                    "Byte expansionskärl": "5050"
-                },
-                "Ospec": {
-                    "Byte expansionskärl": "5060"
+                "Byte expansionskärl": {
+                    "Somatherm (12-18L)": "5050",
+                    "Ospec": "5060"
                 }
             },
             "Cirkulationspump": {
-                "Wilo": {
-                    "Byte Cirkulationspump": "5070"
-                },
-                "Ospec": {
-                    "Byte Cirkulationspump": "5080"
+                "Byte Cirkulationspump": {
+                    "Wilo": "5070",
+                    "Ospec": "5080"
                 }
             }
         }
@@ -162,7 +135,18 @@
             "serviceId": 1011,
             "category": "Kök",
             "serviceName": "Köksblandare",
-            "equipment": "Mora Armatur (MMIX K5",
+            "equipment": "Mora Armatur (MMIX K5)",
+            "work": "Byte / montering",
+            "pricing": {
+                "fullPrice": 7903.0,
+                "discountPrice": 6955.0
+            }
+        },
+        "1012": {
+            "serviceId": 1012,
+            "category": "Kök",
+            "serviceName": "Köksblandare",
+            "equipment": "Ospec",
             "work": "Byte / montering",
             "pricing": {
                 "fullPrice": 7903.0,
