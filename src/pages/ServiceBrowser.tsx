@@ -80,9 +80,16 @@ export default function ServiceBrowser() {
     let level: NavigationLevel = data.navigation;
 
     for (const item of newPath) {
-      level = level[item];
+    const next = level[item];
+
+    if (typeof next === "string") {
+        throw new Error(
+        `Unexpected service ID encountered while rebuilding navigation path: ${next}`
+        );
     }
 
+  level = next;
+}
     setCurrentLevel(level);
     setPath(newPath);
     setSelectedService(null);
@@ -103,11 +110,11 @@ export default function ServiceBrowser() {
   if (selectedService) {
     return (
       <main>
-        <h1>{selectedService.serviceName}</h1>
+        <h1>{selectedService.work}</h1>
 
         <p>
-          {selectedService.category} / {selectedService.serviceName} /{" "}
-          {selectedService.equipment} / {selectedService.work}
+          {selectedService.category} &gt; {selectedService.serviceName} &gt;{" "}
+          {selectedService.equipment} &gt; {selectedService.work}
         </p>
 
         <div>
