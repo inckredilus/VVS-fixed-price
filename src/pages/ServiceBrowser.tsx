@@ -31,6 +31,9 @@ export default function ServiceBrowser() {
   const [path, setPath] = useState<string[]>([]);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
+  const [descriptionText, setDescriptionText] = useState<string>("");
+  const [imageSrc, setImageSrc] = useState<string>("");
+
   useEffect(() => {
     fetch("/data/services.json")
       .then((response) => {
@@ -47,6 +50,32 @@ export default function ServiceBrowser() {
         console.error(error);
       });
   }, []);
+
+  useEffect(() => {
+  if (!selectedService) {
+    setDescriptionText("");
+    setImageSrc("");
+    return;
+  }
+
+  const serviceId = selectedService.serviceId;
+
+  setImageSrc(`/images/services/${serviceId}.jpeg`);
+
+  fetch(`/descriptions/services/${serviceId}.md`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Description file not found");
+      }
+      return response.text();
+    })
+    .then((text) => {
+      setDescriptionText(text);
+    })
+    .catch(() => {
+      setDescriptionText("Detaljerad beskrivning saknas för denna tjänst.");
+    });
+}, [selectedService]);
 
   function handleSelection(label: string) {
     if (!currentLevel || !data) return;
@@ -114,8 +143,21 @@ export default function ServiceBrowser() {
 
         <p>
           {selectedService.category} &gt; {selectedService.serviceName} &gt;{" "}
-          {selectedService.equipment} &gt; {selectedService.work}
+          {selectedService.work}
         </p>
+
+        <img
+          src={imageSrc}
+          alt={`Bild för ${selectedService.serviceName} - ${selectedService.work}`}
+          onError={() => setImageSrc("/images/image_missing.jpeg")}
+          style={{
+            width: "100%",
+            maxWidth: "480px",
+            height: "auto",
+            display: "block",
+            marginBottom: "1rem",
+          }}
+        />
 
         <div>
           <p>
@@ -128,6 +170,11 @@ export default function ServiceBrowser() {
           </p>
         </div>
 
+        <section>
+          <h2>Beskrivning</h2>
+          <div style={{ whiteSpace: "pre-wrap" }}>{descriptionText}</div>
+        </section>
+
         <p>
           <strong>ServiceID:</strong> {selectedService.serviceId}
         </p>
@@ -136,7 +183,7 @@ export default function ServiceBrowser() {
       </main>
     );
   }
-
+  
   return (
     <main>
       <h1>Välj VVS-tjänst</h1>
