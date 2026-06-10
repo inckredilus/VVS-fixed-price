@@ -32,7 +32,10 @@ export default function ServiceBrowser() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   const [descriptionText, setDescriptionText] = useState<string>("");
-  const [imageSrc, setImageSrc] = useState<string>("");
+
+  const imageSrc = selectedService
+    ? `/images/services/${selectedService.serviceId}.jpeg`
+    : "";
 
   useEffect(() => {
     fetch("/data/services.json")
@@ -52,30 +55,24 @@ export default function ServiceBrowser() {
   }, []);
 
   useEffect(() => {
-  if (!selectedService) {
-    setDescriptionText("");
-    setImageSrc("");
-    return;
-  }
+    if (!selectedService) return;
 
-  const serviceId = selectedService.serviceId;
-
-  setImageSrc(`/images/services/${serviceId}.jpeg`);
-
-  fetch(`/descriptions/services/${serviceId}.md`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Description file not found");
-      }
-      return response.text();
-    })
-    .then((text) => {
-      setDescriptionText(text);
-    })
-    .catch(() => {
-      setDescriptionText("Detaljerad beskrivning saknas för denna tjänst.");
-    });
-}, [selectedService]);
+    const serviceId = selectedService.serviceId;
+   
+    fetch(`/descriptions/services/${serviceId}.md`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Description file not found");
+        }
+        return response.text();
+      })
+      .then((text) => {
+        setDescriptionText(text);
+      })
+      .catch(() => {
+        setDescriptionText("Detaljerad beskrivning saknas för denna tjänst.");
+      });
+  }, [selectedService]);
 
   function handleSelection(label: string) {
     if (!currentLevel || !data) return;
@@ -149,7 +146,9 @@ export default function ServiceBrowser() {
         <img
           src={imageSrc}
           alt={`Bild för ${selectedService.serviceName} - ${selectedService.work}`}
-          onError={() => setImageSrc("/images/image_missing.jpeg")}
+          onError={(event) => {
+            event.currentTarget.src = "/images/image_missing.jpeg";
+          }}
           style={{
             width: "100%",
             maxWidth: "480px",
@@ -183,7 +182,7 @@ export default function ServiceBrowser() {
       </main>
     );
   }
-  
+
   return (
     <main>
       <h1>Välj VVS-tjänst</h1>
