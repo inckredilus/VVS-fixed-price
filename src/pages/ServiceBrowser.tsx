@@ -37,7 +37,12 @@ export default function ServiceBrowser() {
     ? `/images/services/${selectedService.serviceId}.jpeg`
     : "";
 
-  useEffect(() => {
+  const [quantity, setQuantity] = useState<number>(0);
+  const [showOrderPage, setShowOrderPage] = useState<boolean>(false);
+
+// State and Effects
+
+useEffect(() => {
     fetch("/data/services.json")
       .then((response) => {
         if (!response.ok) {
@@ -80,6 +85,8 @@ export default function ServiceBrowser() {
       });
   }, [selectedService]);
 
+// Functions
+
   function handleSelection(label: string) {
     if (!currentLevel || !data) return;
 
@@ -99,6 +106,9 @@ export default function ServiceBrowser() {
   function resetBrowser() {
     if (!data) return;
 
+    setQuantity(0);
+    setShowOrderPage(false);
+
     setCurrentLevel(data.navigation);
     setPath([]);
     setSelectedService(null);
@@ -112,19 +122,34 @@ export default function ServiceBrowser() {
     let level: NavigationLevel = data.navigation;
 
     for (const item of newPath) {
-    const next = level[item];
+      const next = level[item];
 
-    if (typeof next === "string") {
-        throw new Error(
-        `Unexpected service ID encountered while rebuilding navigation path: ${next}`
-        );
+      if (typeof next === "string") {
+          throw new Error(
+          `Unexpected service ID encountered while rebuilding navigation path: ${next}`
+          );
+      }
+
+      level = next;
     }
 
-  level = next;
-}
     setCurrentLevel(level);
     setPath(newPath);
     setSelectedService(null);
+  }
+
+  function increaseQuantity() {
+    setQuantity((current) => current + 1);
+  }
+
+  function decreaseQuantity() {
+    setQuantity((current) => Math.max(0, current - 1));
+  }
+
+  function addToOrder() {
+    if (quantity > 0) {
+      setShowOrderPage(true);
+    }
   }
 
   function formatPrice(value: number) {
@@ -137,6 +162,42 @@ export default function ServiceBrowser() {
 
   if (!data || !currentLevel) {
     return <p>Laddar tjänster...</p>;
+  }
+
+  if (showOrderPage && selectedService) {
+    return (
+      <main>
+        <h1>Din beställning</h1>
+
+        <p>
+          <strong>Tjänst:</strong> {selectedService.serviceName}
+        </p>
+
+        <p>
+          <strong>Arbete:</strong> {selectedService.work}
+        </p>
+
+        <p>
+          <strong>Antal:</strong> {quantity}
+        </p>
+
+        <p>
+          <strong>Ordinarie pris:</strong>{" "}
+          {formatPrice(selectedService.pricing.fullPrice * quantity)}
+        </p>
+
+        <p>
+          <strong>ROT-pris:</strong>{" "}
+          {formatPrice(selectedService.pricing.discountPrice * quantity)}
+        </p>
+
+        <p>
+          <strong>ServiceID:</strong> {selectedService.serviceId}
+        </p>
+
+        <button onClick={resetBrowser}>OK</button>
+      </main>
+    );
   }
 
   if (selectedService) {
@@ -179,6 +240,28 @@ export default function ServiceBrowser() {
           <h2>Beskrivning</h2>
           <div style={{ whiteSpace: "pre-wrap" }}>{descriptionText}</div>
         </section>
+
+        <section>
+          <h2>Antal</h2>
+
+          <button onClick={decreaseQuantity} disabled={quantity === 0}>
+            -
+          </button>
+
+          <span style={{ margin: "0 1rem" }}>{quantity}</span>
+
+          <button onClick={increaseQuantity}>+</button>
+        </section>
+
+        <div style={{ marginTop: "1rem" }}>
+          <button onClick={goBack}>Tillbaka</button>
+
+          <button onClick={addToOrder} disabled={quantity === 0}>
+            Lägg till
+          </button>
+
+          <button onClick={resetBrowser}>Avbryt</button>
+        </div>
 
         <p>
           <strong>ServiceID:</strong> {selectedService.serviceId}
