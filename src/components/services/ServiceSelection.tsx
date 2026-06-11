@@ -15,7 +15,7 @@ export default function ServiceSelection({
 }: Props) {
   return (
     <main>
-      <h1>Välj VVS-tjänst (v1.0)</h1>
+      <h1>Välj VVS-tjänst (v1.1)</h1>
 
       {path.length > 0 && (
         <p>

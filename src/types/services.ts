@@ -22,3 +22,8 @@ export type ServicesJson = {
   navigation: NavigationLevel;
   services: Record<string, Service>;
 };
+
+export type CartItem = {
+  service: Service;
+  quantity: number;
+};

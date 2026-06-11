@@ -5,6 +5,7 @@ import ServiceOrder from "../components/services/ServiceOrder";
 import ServiceSelection from "../components/services/ServiceSelection";
 
 import type {
+  CartItem,
   NavigationLevel,
   Service,
   ServicesJson,
@@ -25,9 +26,16 @@ export default function ServiceBrowser() {
   const [quantity, setQuantity] = useState<number>(0);
   const [showOrderPage, setShowOrderPage] = useState<boolean>(false);
 
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
   const imageSrc = selectedService
     ? `/images/services/${selectedService.serviceId}.jpeg`
     : "";
+
+  const cartItemCount = cartItems.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
 
   // ---------------------------------------------------------------------------
   // Effects: load JSON and service descriptions
@@ -106,6 +114,7 @@ export default function ServiceBrowser() {
     setQuantity(0);
     setShowOrderPage(false);
     setDescriptionText("");
+    setCartItems([]);
 
     setCurrentLevel(data.navigation);
     setPath([]);
@@ -150,10 +159,59 @@ export default function ServiceBrowser() {
     setQuantity((current) => Math.max(0, current - 1));
   }
 
+  function clearQuantity() {
+    setQuantity(0);
+  }
+
   function addToOrder() {
-    if (quantity > 0) {
+    if (!selectedService || quantity === 0) return;
+
+    setCartItems((currentItems) => {
+      const existingItem = currentItems.find(
+        (item) => item.service.serviceId === selectedService.serviceId
+      );
+
+      if (!existingItem) {
+        return [
+          ...currentItems,
+          {
+            service: selectedService,
+            quantity,
+          },
+        ];
+      }
+
+      return currentItems.map((item) =>
+        item.service.serviceId === selectedService.serviceId
+          ? {
+              ...item,
+              quantity: item.quantity + quantity,
+            }
+          : item
+      );
+    });
+
+    setQuantity(0);
+  }
+
+  function goToOrderPage() {
+    if (cartItems.length > 0) {
       setShowOrderPage(true);
     }
+  }
+
+  function cancelOrder() {
+    const hasCartItems = cartItems.length > 0;
+
+    if (hasCartItems) {
+      const confirmed = window.confirm(
+        "Vill du avbryta och tömma hela beställningen?"
+      );
+
+      if (!confirmed) return;
+    }
+
+    resetBrowser();
   }
 
   // ---------------------------------------------------------------------------
@@ -179,8 +237,7 @@ export default function ServiceBrowser() {
   if (showOrderPage && selectedService) {
     return (
       <ServiceOrder
-        service={selectedService}
-        quantity={quantity}
+        cartItems={cartItems}
         onOk={resetBrowser}
         formatPrice={formatPrice}
       />
@@ -194,9 +251,12 @@ export default function ServiceBrowser() {
         descriptionText={descriptionText}
         imageSrc={imageSrc}
         quantity={quantity}
+        cartItemCount={cartItemCount}
         onBack={goBack}
-        onCancel={resetBrowser}
+        onCancel={cancelOrder}
+        onClearQuantity={clearQuantity}
         onAddToOrder={addToOrder}
+        onGoToOrderPage={goToOrderPage}
         onIncreaseQuantity={increaseQuantity}
         onDecreaseQuantity={decreaseQuantity}
         formatPrice={formatPrice}

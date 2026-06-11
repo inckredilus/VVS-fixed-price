@@ -5,11 +5,14 @@ type Props = {
   descriptionText: string;
   imageSrc: string;
   quantity: number;
+  cartItemCount: number;
   onBack: () => void;
   onCancel: () => void;
   onAddToOrder: () => void;
+  onGoToOrderPage: () => void;
   onIncreaseQuantity: () => void;
   onDecreaseQuantity: () => void;
+  onClearQuantity: () => void;
   formatPrice: (value: number) => string;
 };
 
@@ -18,11 +21,14 @@ export default function ServiceDetail({
   descriptionText,
   imageSrc,
   quantity,
+  cartItemCount,
   onBack,
   onCancel,
   onAddToOrder,
+  onGoToOrderPage,
   onIncreaseQuantity,
   onDecreaseQuantity,
+  onClearQuantity,
   formatPrice,
 }: Props) {
   return (
@@ -73,7 +79,14 @@ export default function ServiceDetail({
 
         <span style={{ margin: "0 1rem" }}>{quantity}</span>
 
-        <button onClick={onIncreaseQuantity}>+</button>
+        <button onClick={onIncreaseQuantity}>
+            +
+        </button>
+
+        <button onClick={onClearQuantity} disabled={quantity === 0}>
+            Rensa
+        </button>
+
       </section>
 
       <div style={{ marginTop: "1rem" }}>
@@ -81,6 +94,10 @@ export default function ServiceDetail({
 
         <button onClick={onAddToOrder} disabled={quantity === 0}>
           Lägg till
+        </button>
+
+        <button onClick={onGoToOrderPage} disabled={cartItemCount === 0}>
+          Gå till beställning ({cartItemCount})
         </button>
 
         <button onClick={onCancel}>Avbryt</button>
