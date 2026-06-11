@@ -58,19 +58,25 @@ export default function ServiceBrowser() {
     if (!selectedService) return;
 
     const serviceId = selectedService.serviceId;
-   
+
     fetch(`/descriptions/services/${serviceId}.md`)
-      .then((response) => {
-        if (!response.ok) {
+      .then((response) => response.text())
+      .then((text) => {
+        if (text.trim().startsWith("<!doctype html>")) {
           throw new Error("Description file not found");
         }
-        return response.text();
-      })
-      .then((text) => {
+
         setDescriptionText(text);
       })
       .catch(() => {
-        setDescriptionText("Detaljerad beskrivning saknas för denna tjänst.");
+        fetch("/descriptions/description_missing.md")
+          .then((response) => response.text())
+          .then((text) => {
+            setDescriptionText(text);
+          })
+          .catch(() => {
+            setDescriptionText("Detaljerad beskrivning saknas för denna tjänst.");
+          });
       });
   }, [selectedService]);
 
