@@ -1,4 +1,5 @@
 import type { Service } from "../../types/services";
+import ReactMarkdown from "react-markdown";
 
 type Props = {
   service: Service;
@@ -67,7 +68,7 @@ export default function ServiceDetail({
 
       <section>
         <h2>Beskrivning</h2>
-        <div style={{ whiteSpace: "pre-wrap" }}>{descriptionText}</div>
+         <ReactMarkdown>{descriptionText}</ReactMarkdown>
       </section>
 
       <section>
