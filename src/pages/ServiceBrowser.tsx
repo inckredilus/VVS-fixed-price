@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import HomePage from "./HomePage";
+
 import ServiceDetail from "../components/services/ServiceDetail";
 import ServiceOrder from "../components/services/ServiceOrder";
 import ServiceSelection from "../components/services/ServiceSelection";
@@ -27,6 +29,8 @@ export default function ServiceBrowser() {
   const [showOrderPage, setShowOrderPage] = useState<boolean>(false);
 
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const [showHomePage, setShowHomePage] = useState<boolean>(true);
 
   const imageSrc = selectedService
     ? `/images/services/${selectedService.serviceId}.jpeg`
@@ -90,6 +94,10 @@ export default function ServiceBrowser() {
   // Functions: service selection and navigation
   // ---------------------------------------------------------------------------
 
+  function startSelection() {
+    setShowHomePage(false);
+  }
+  
   function handleSelection(label: string) {
     if (!currentLevel || !data) return;
 
@@ -229,6 +237,10 @@ export default function ServiceBrowser() {
   // ---------------------------------------------------------------------------
   // Page rendering
   // ---------------------------------------------------------------------------
+
+  if (showHomePage) {
+    return <HomePage onStartSelection={startSelection} />;
+  }
 
   if (!data || !currentLevel) {
     return <p>Laddar tjänster...</p>;
