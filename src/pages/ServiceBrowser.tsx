@@ -6,6 +6,8 @@ import ServiceDetail from "../components/services/ServiceDetail";
 import ServiceOrder from "../components/services/ServiceOrder";
 import ServiceSelection from "../components/services/ServiceSelection";
 
+import { loadMarkdownOrFallback } from "../utils/loadMarkdown";
+
 import type {
   CartItem,
   NavigationLevel,
@@ -62,33 +64,22 @@ export default function ServiceBrowser() {
       });
   }, []);
 
-  useEffect(() => {
-    if (!selectedService) return;
+useEffect(() => {
+  if (!selectedService) return;
 
-    const serviceId = selectedService.serviceId;
+  const serviceId = selectedService.serviceId;
 
-    fetch(`/descriptions/services/${serviceId}.md`)
-      .then((response) => response.text())
-      .then((text) => {
-        if (text.trim().startsWith("<!doctype html>")) {
-          throw new Error("Description file not found");
-        }
-
-        setDescriptionText(text);
-      })
-      .catch(() => {
-        fetch("/descriptions/description_missing.md")
-          .then((response) => response.text())
-          .then((text) => {
-            setDescriptionText(text);
-          })
-          .catch(() => {
-            setDescriptionText(
-              "Detaljerad beskrivning saknas för denna tjänst."
-            );
-          });
-      });
-  }, [selectedService]);
+  loadMarkdownOrFallback(
+    `/descriptions/services/${serviceId}.md`,
+    "/descriptions/description_missing.md"
+  )
+    .then(setDescriptionText)
+    .catch(() => {
+      setDescriptionText(
+        "Detaljerad beskrivning saknas för denna tjänst."
+      );
+    });
+}, [selectedService]);
 
   // ---------------------------------------------------------------------------
   // Functions: service selection and navigation
