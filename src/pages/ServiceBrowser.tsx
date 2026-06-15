@@ -155,6 +155,10 @@ export default function ServiceBrowser() {
     setShowOrderPage(false);
   }
 
+  function goToHomePage() {
+    setShowHomePage(true);
+  }
+
   // ---------------------------------------------------------------------------
   // Functions: quantity and temporary order flow
   // ---------------------------------------------------------------------------
@@ -282,6 +286,7 @@ export default function ServiceBrowser() {
       path={path}
       onSelect={handleSelection}
       onBack={goBack}
+      onHome={goToHomePage}
     />
   );
 }

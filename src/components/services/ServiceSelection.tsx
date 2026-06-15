@@ -5,6 +5,7 @@ type Props = {
   path: string[];
   onSelect: (label: string) => void;
   onBack: () => void;
+  onHome: () => void;
 };
 
 export default function ServiceSelection({
@@ -12,6 +13,7 @@ export default function ServiceSelection({
   path,
   onSelect,
   onBack,
+  onHome,
 }: Props) {
   return (
     <main>
@@ -43,6 +45,9 @@ export default function ServiceSelection({
       </div>
 
       {path.length > 0 && <button onClick={onBack}>Tillbaka</button>}
+
+      <button onClick={onHome}>Startsida</button>
+
     </main>
   );
 }

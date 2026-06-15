@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import { loadMarkdown } from "../utils/loadMarkdown";
 
 type Props = {
   onStartSelection: () => void;
 };
-
-type MarkdownSetter = React.Dispatch<React.SetStateAction<string>>;
 
 export default function HomePage({ onStartSelection }: Props) {
   // ---------------------------------------------------------------------------
@@ -21,50 +20,29 @@ export default function HomePage({ onStartSelection }: Props) {
   // Helper functions
   // ---------------------------------------------------------------------------
 
-  function loadMarkdown(
-    filePath: string,
-    setter: MarkdownSetter
-  ) {
-    fetch(filePath)
-      .then((response) => response.text())
-      .then((text) => {
-        // Vite may return index.html instead of 404
-        if (text.trim().startsWith("<!doctype html>")) {
-          throw new Error(`Markdown file not found: ${filePath}`);
-        }
-
-        setter(text);
-      })
-      .catch(() => {
-        setter("");
-      });
-  }
+    // Moved loadMarkdown() to utils/loadMarkdown.ts
 
   // ---------------------------------------------------------------------------
   // Effects: load Home page markdown content
   // ---------------------------------------------------------------------------
 
-  useEffect(() => {
-    loadMarkdown(
-      "/descriptions/home/title.md",
-      setTitleText
-    );
+useEffect(() => {
+  loadMarkdown("/descriptions/home/title.md")
+    .then(setTitleText)
+    .catch(() => setTitleText(""));
 
-    loadMarkdown(
-      "/descriptions/home/intro.md",
-      setIntroText
-    );
+  loadMarkdown("/descriptions/home/intro.md")
+    .then(setIntroText)
+    .catch(() => setIntroText(""));
 
-    loadMarkdown(
-      "/descriptions/home/services.md",
-      setServicesText
-    );
+  loadMarkdown("/descriptions/home/services.md")
+    .then(setServicesText)
+    .catch(() => setServicesText(""));
 
-    loadMarkdown(
-      "/descriptions/home/about.md",
-      setAboutText
-    );
-  }, []);
+  loadMarkdown("/descriptions/home/about.md")
+    .then(setAboutText)
+    .catch(() => setAboutText(""));
+}, []);
 
   // ---------------------------------------------------------------------------
   // Page rendering
