@@ -11,56 +11,57 @@ export default function ServiceOrder({
   onOk,
   formatPrice,
 }: Props) {
-  const totalFullPrice = cartItems.reduce(
-    (sum, item) => sum + item.service.pricing.fullPrice * item.quantity,
-    0
-  );
+  const totalPrice = cartItems.reduce((sum, item) => {
+    const unitPrice = item.useRotDeduction
+      ? item.service.pricing.discountPrice
+      : item.service.pricing.fullPrice;
 
-  const totalDiscountPrice = cartItems.reduce(
-    (sum, item) => sum + item.service.pricing.discountPrice * item.quantity,
-    0
-  );
+    return sum + unitPrice * item.quantity;
+  }, 0);
 
   return (
     <main>
       <h1>Din beställning</h1>
 
-      {cartItems.map((item, index) => (
-        <section key={`${item.service.serviceId}-${index}`}>
-          <h2>
-            {item.service.serviceName} - {item.service.work}
-          </h2>
+      {cartItems.map((item, index) => {
+        const unitPrice = item.useRotDeduction
+          ? item.service.pricing.discountPrice
+          : item.service.pricing.fullPrice;
 
-          <p>
-            <strong>Antal:</strong> {item.quantity}
-          </p>
+        const rowPrice = unitPrice * item.quantity;
 
-          <p>
-            <strong>Ordinarie pris:</strong>{" "}
-            {formatPrice(item.service.pricing.fullPrice * item.quantity)}
-          </p>
+        return (
+          <section key={`${item.service.serviceId}-${index}`}>
+            <h2>
+              {item.service.serviceName} - {item.service.work}
+            </h2>
 
-          <p>
-            <strong>ROT-pris:</strong>{" "}
-            {formatPrice(item.service.pricing.discountPrice * item.quantity)}
-          </p>
+            <p>
+              <strong>Antal:</strong> {item.quantity}
+            </p>
 
-          <p>
-            <strong>ServiceID:</strong> {item.service.serviceId}
-          </p>
+            <p>
+              <strong>Prisval:</strong>{" "}
+              {item.useRotDeduction ? "Med ROT-avdrag" : "Utan ROT-avdrag"}
+            </p>
 
-          <hr />
-        </section>
-      ))}
+            <p>
+              <strong>Pris:</strong> {formatPrice(rowPrice)}
+            </p>
+
+            <p>
+              <strong>ServiceID:</strong> {item.service.serviceId}
+            </p>
+
+            <hr />
+          </section>
+        );
+      })}
 
       <h2>Totalt</h2>
 
       <p>
-        <strong>Ordinarie pris:</strong> {formatPrice(totalFullPrice)}
-      </p>
-
-      <p>
-        <strong>ROT-pris:</strong> {formatPrice(totalDiscountPrice)}
+        <strong>Pris:</strong> {formatPrice(totalPrice)}
       </p>
 
       <button onClick={onOk}>OK</button>

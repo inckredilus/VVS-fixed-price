@@ -14,6 +14,8 @@ type Props = {
   onIncreaseQuantity: () => void;
   onDecreaseQuantity: () => void;
   onClearQuantity: () => void;
+  useRotDeduction: boolean;
+  onUseRotDeductionChange: (value: boolean) => void;
   formatPrice: (value: number) => string;
 };
 
@@ -30,6 +32,8 @@ export default function ServiceDetail({
   onIncreaseQuantity,
   onDecreaseQuantity,
   onClearQuantity,
+  useRotDeduction,
+  onUseRotDeductionChange,
   formatPrice,
 }: Props) {
   return (
@@ -87,6 +91,15 @@ export default function ServiceDetail({
         <button onClick={onClearQuantity} disabled={quantity === 0}>
             Rensa
         </button>
+
+        <label style={{ display: "block", marginTop: "1rem" }}>
+          <input
+            type="checkbox"
+            checked={useRotDeduction}
+            onChange={(event) => onUseRotDeductionChange(event.target.checked)}
+          />{" "}
+          Jag vill använda ROT-avdrag
+        </label>
 
       </section>
 

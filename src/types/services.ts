@@ -26,4 +26,5 @@ export type ServicesJson = {
 export type CartItem = {
   service: Service;
   quantity: number;
+  useRotDeduction: boolean;
 };

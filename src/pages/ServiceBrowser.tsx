@@ -28,6 +28,7 @@ export default function ServiceBrowser() {
   const [descriptionText, setDescriptionText] = useState<string>("");
 
   const [quantity, setQuantity] = useState<number>(0);
+  const [useRotDeduction, setUseRotDeduction] = useState<boolean>(true);
   const [showOrderPage, setShowOrderPage] = useState<boolean>(false);
 
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -171,7 +172,9 @@ useEffect(() => {
 
     setCartItems((currentItems) => {
       const existingItem = currentItems.find(
-        (item) => item.service.serviceId === selectedService.serviceId
+        (item) =>
+          item.service.serviceId === selectedService.serviceId &&
+          item.useRotDeduction === useRotDeduction
       );
 
       if (!existingItem) {
@@ -180,12 +183,14 @@ useEffect(() => {
           {
             service: selectedService,
             quantity,
+            useRotDeduction,
           },
         ];
       }
 
       return currentItems.map((item) =>
-        item.service.serviceId === selectedService.serviceId
+        item.service.serviceId === selectedService.serviceId &&
+        item.useRotDeduction === useRotDeduction
           ? {
               ...item,
               quantity: item.quantity + quantity,
@@ -259,6 +264,8 @@ useEffect(() => {
         imageSrc={imageSrc}
         quantity={quantity}
         cartItemCount={cartItemCount}
+        useRotDeduction={useRotDeduction}
+        onUseRotDeductionChange={setUseRotDeduction}
         onBack={goBack}
         onCancel={cancelOrder}
         onClearQuantity={clearQuantity}
