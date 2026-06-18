@@ -1,4 +1,5 @@
 import type { CartItem } from "../../types/services";
+import { shouldShowEquipment } from "../../utils/orderHelpers";
 
 type Props = {
   cartItems: CartItem[];
@@ -40,6 +41,12 @@ export default function ServiceOrder({
               {item.service.serviceName} - {item.service.work}
             </h2>
 
+            {shouldShowEquipment(item.service.equipment) && (
+              <p>
+                <strong>Utrustning:</strong> {item.service.equipment}
+              </p>
+            )}
+
             <p>
               <strong>Antal:</strong> {item.quantity}
             </p>
@@ -73,7 +80,7 @@ export default function ServiceOrder({
         <button onClick={onContinue}>Fortsätt</button>
         <button onClick={onCancel}>Avbryt</button>
       </div>
-      
+
     </main>
   );
 }

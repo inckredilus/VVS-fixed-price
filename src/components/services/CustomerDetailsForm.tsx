@@ -4,14 +4,16 @@ type Props = {
   customerDetails: CustomerDetails;
   onChange: (details: CustomerDetails) => void;
   onBack: () => void;
-  onSubmit: () => void;
+  onContinue: () => void;
+  onCancel: () => void;
 };
 
 export default function CustomerDetailsForm({
   customerDetails,
   onChange,
   onBack,
-  onSubmit,
+  onContinue,
+  onCancel,
 }: Props) {
   function updateField(field: keyof CustomerDetails, value: string) {
     onChange({
@@ -19,6 +21,15 @@ export default function CustomerDetailsForm({
       [field]: value,
     });
   }
+
+const isFormComplete =
+    customerDetails.firstName.trim() !== "" &&
+    customerDetails.lastName.trim() !== "" &&
+    customerDetails.address.trim() !== "" &&
+    customerDetails.postalCode.trim() !== "" &&
+    customerDetails.city.trim() !== "" &&
+    customerDetails.phone.trim() !== "" &&
+    customerDetails.email.trim() !== "";
 
   return (
     <main>
@@ -96,9 +107,19 @@ export default function CustomerDetailsForm({
       </label>
 
       <div>
-        <button onClick={onBack}>Tillbaka</button>
-        <button onClick={onSubmit}>Skicka beställning</button>
+        <button onClick={onBack}>
+            Tillbaka
+        </button>
+
+        <button onClick={onContinue} disabled={!isFormComplete}>
+            Fortsätt
+        </button>
+
+        <button onClick={onCancel}>
+            Avbryt
+        </button>
       </div>
+
     </main>
   );
 }

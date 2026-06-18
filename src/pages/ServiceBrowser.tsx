@@ -7,6 +7,9 @@ import ServiceOrder from "../components/services/ServiceOrder";
 import ServiceSelection from "../components/services/ServiceSelection";
 import CustomerDetailsForm from "../components/services/CustomerDetailsForm";
 
+import OrderConfirmation
+  from "../components/services/OrderConfirmation";
+
 import { loadMarkdownOrFallback } from "../utils/loadMarkdown";
 
 import type {
@@ -35,6 +38,9 @@ export default function ServiceBrowser() {
   const [showOrderPage, setShowOrderPage] = useState<boolean>(false);
   const [showCustomerDetailsPage, setShowCustomerDetailsPage] =
     useState<boolean>(false);
+
+  const [showConfirmationPage, setShowConfirmationPage] =
+    useState(false);
 
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails>({
     firstName: "",
@@ -137,6 +143,7 @@ useEffect(() => {
     setSelectedService(null);
 
     setShowCustomerDetailsPage(false);    
+    setShowConfirmationPage(false);
   }
 
   function goBack() {
@@ -240,9 +247,21 @@ useEffect(() => {
     setShowOrderPage(true);
   }
 
+  function goToConfirmationPage() {
+    setShowCustomerDetailsPage(false);
+    setShowConfirmationPage(true);
+  }
+
+  function goBackToCustomerDetails() {
+    setShowConfirmationPage(false);
+    setShowCustomerDetailsPage(true);
+  }
+
   function submitOrder() {
-    alert("Nästa steg: visa orderbekräftelse");
-  }  
+    alert(
+      "Beställning skickad (placeholder)"
+    );
+  } 
 
   function cancelOrder() {
     const hasCartItems = cartItems.length > 0;
@@ -288,7 +307,21 @@ useEffect(() => {
         customerDetails={customerDetails}
         onChange={setCustomerDetails}
         onBack={goBackToOrderPage}
+        onContinue={goToConfirmationPage}
+        onCancel={cancelOrder}
+      />
+    );
+  }
+
+  if (showConfirmationPage) {
+    return (
+      <OrderConfirmation
+        cartItems={cartItems}
+        customerDetails={customerDetails}
+        formatPrice={formatPrice}
+        onBack={goBackToCustomerDetails}
         onSubmit={submitOrder}
+        onCancel={cancelOrder}
       />
     );
   }
