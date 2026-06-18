@@ -90,7 +90,7 @@
         },
         "Värme": {
             "Radiator": {
-                "Byte radiotor": {
+                "Byte radiator": {
                     "Halrad, modell standard": "5010"
                 }
             },
@@ -100,7 +100,7 @@
                 }
             },
             "Radiatorventiler": {
-                "Byte radiotorventiler": {
+                "Byte radiatorventiler": {
                     "1-rörs system": "5030",
                     "2-rörs system": "5040"
                 }
@@ -414,7 +414,7 @@
             "category": "Värme",
             "serviceName": "Radiator",
             "equipment": "Halrad, modell standard",
-            "work": "Byte radiotor",
+            "work": "Byte radiator",
             "pricing": {
                 "fullPrice": 10550.0,
                 "discountPrice": 9250.0
@@ -436,7 +436,7 @@
             "category": "Värme",
             "serviceName": "Radiatorventiler",
             "equipment": "1-rörs system",
-            "work": "Byte radiotorventiler",
+            "work": "Byte radiatorventiler",
             "pricing": {
                 "fullPrice": 4510.0,
                 "discountPrice": 3560.0
@@ -447,7 +447,7 @@
             "category": "Värme",
             "serviceName": "Radiatorventiler",
             "equipment": "2-rörs system",
-            "work": "Byte radiotorventiler",
+            "work": "Byte radiatorventiler",
             "pricing": {
                 "fullPrice": 2947.0,
                 "discountPrice": 2315.0
@@ -508,5 +508,50 @@
                 "discountPrice": 1888.88
             }
         }
+    },
+    "navigationDescriptions": {
+        "Kök": "/descriptions/navigation/kok.md",
+        "Kök|Köksblandare": "/descriptions/navigation/kok/koksblandare.md",
+        "Kök|Köksblandare|Byte / montering": "/descriptions/navigation/kok/koksblandare/byte-montering.md",
+        "Kök|Köksvattenlås": "/descriptions/navigation/kok/koksvattenlas.md",
+        "Kök|Köksvattenlås|Byte / montering": "/descriptions/navigation/kok/koksvattenlas/byte-montering.md",
+        "Vatten": "/descriptions/navigation/vatten.md",
+        "Vatten|Vattenfelsbrytare": "/descriptions/navigation/vatten/vattenfelsbrytare.md",
+        "Vatten|Vattenfelsbrytare|Byte / montering": "/descriptions/navigation/vatten/vattenfelsbrytare/byte-montering.md",
+        "Vatten|Varmvattenberedare": "/descriptions/navigation/vatten/varmvattenberedare.md",
+        "Vatten|Varmvattenberedare|Byte / Installation": "/descriptions/navigation/vatten/varmvattenberedare/byte-installation.md",
+        "Vatten|Vattenmätarkoppel": "/descriptions/navigation/vatten/vattenmatarkoppel.md",
+        "Vatten|Vattenmätarkoppel|Byte / montering": "/descriptions/navigation/vatten/vattenmatarkoppel/byte-montering.md",
+        "Vatten|Gatuavstängningsventil": "/descriptions/navigation/vatten/gatuavstangningsventil.md",
+        "Vatten|Gatuavstängningsventil|Byte av A+B ventil i villa": "/descriptions/navigation/vatten/gatuavstangningsventil/byte-av-a-b-ventil-i-villa.md",
+        "Badrum": "/descriptions/navigation/badrum.md",
+        "Badrum|Tvättställsblandare": "/descriptions/navigation/badrum/tvattstallsblandare.md",
+        "Badrum|Tvättställsblandare|Byte / montering": "/descriptions/navigation/badrum/tvattstallsblandare/byte-montering.md",
+        "Badrum|Duschblandare": "/descriptions/navigation/badrum/duschblandare.md",
+        "Badrum|Duschblandare|Byte / montering": "/descriptions/navigation/badrum/duschblandare/byte-montering.md",
+        "Badrum|Tvättställ": "/descriptions/navigation/badrum/tvattstall.md",
+        "Badrum|Tvättställ|Montering Tvättställ med blandare": "/descriptions/navigation/badrum/tvattstall/montering-tvattstall-med-blandare.md",
+        "Badrum|Badkarsblandare": "/descriptions/navigation/badrum/badkarsblandare.md",
+        "Badrum|Badkarsblandare|Montering badkarsblandare": "/descriptions/navigation/badrum/badkarsblandare/montering-badkarsblandare.md",
+        "Badrum|Badkarsblandare|Byte / montering": "/descriptions/navigation/badrum/badkarsblandare/byte-montering.md",
+        "Badrum|Duschkabin ": "/descriptions/navigation/badrum/duschkabin.md",
+        "Badrum|Duschkabin |Montering av duschkabin": "/descriptions/navigation/badrum/duschkabin/montering-av-duschkabin.md",
+        "Badrum|Toalettstol": "/descriptions/navigation/badrum/toalettstol.md",
+        "Badrum|Toalettstol|Byte / montering": "/descriptions/navigation/badrum/toalettstol/byte-montering.md",
+        "Trädgård": "/descriptions/navigation/tradgard.md",
+        "Trädgård|Vattenutkastare": "/descriptions/navigation/tradgard/vattenutkastare.md",
+        "Trädgård|Vattenutkastare|Byte / montering": "/descriptions/navigation/tradgard/vattenutkastare/byte-montering.md",
+        "Värme": "/descriptions/navigation/varme.md",
+        "Värme|Radiator": "/descriptions/navigation/varme/radiator.md",
+        "Värme|Radiator|Byte radiator": "/descriptions/navigation/varme/radiator/byte-radiator.md",
+        "Värme|Radiatorinstallation": "/descriptions/navigation/varme/radiatorinstallation.md",
+        "Värme|Radiatorinstallation|Montering och nyanslutning radiator": "/descriptions/navigation/varme/radiatorinstallation/montering-och-nyanslutning-radiator.md",
+        "Värme|Radiatorventiler": "/descriptions/navigation/varme/radiatorventiler.md",
+        "Värme|Radiatorventiler|Byte radiatorventiler": "/descriptions/navigation/varme/radiatorventiler/byte-radiatorventiler.md",
+        "Värme|Expansionskärl": "/descriptions/navigation/varme/expansionskarl.md",
+        "Värme|Expansionskärl|Byte expansionskärl": "/descriptions/navigation/varme/expansionskarl/byte-expansionskarl.md",
+        "Värme|Cirkulationspump": "/descriptions/navigation/varme/cirkulationspump.md",
+        "Värme|Cirkulationspump|Byte Cirkulationspump": "/descriptions/navigation/varme/cirkulationspump/byte-cirkulationspump.md",
+        "Värme|Cirkulationspump|TEST - Byte / montering - TEST": "/descriptions/navigation/varme/cirkulationspump/test-byte-montering-test.md"
     }
 }

@@ -1,6 +1,9 @@
 import json
 from pathlib import Path
 
+import re
+import unicodedata
+
 import pandas as pd
 
 
@@ -66,14 +69,51 @@ def build_navigation_tree(df: pd.DataFrame) -> dict:
 
     return tree
 
+def build_navigation_descriptions(df: pd.DataFrame) -> dict:
+    """
+    Build optional markdown paths for navigation levels.
+
+    These files do not have to exist.
+    React will try to load them and silently ignore missing files.
+    """
+
+    descriptions = {}
+
+    for _, row in df.iterrows():
+
+        category = row["ServiceCategory"]
+        service_name = row["ServiceName"]
+        work = row["ServiceWork"]
+
+        levels = [
+            category,
+            service_name,
+            work,
+        ]
+
+        for index in range(len(levels)):
+            label_path = levels[: index + 1]
+            json_key = "|".join(label_path)
+
+            slug_path = "/".join(
+                slugify(label) for label in label_path
+            )
+
+            descriptions[json_key] = (
+                f"/descriptions/navigation/{slug_path}.md"
+            )
+
+    return descriptions
 
 def export_json(output_file: Path,
                 navigation: dict,
-                services: dict) -> None:
+                services: dict,
+                navigation_descriptions: dict) -> None:
 
     data = {
         "navigation": navigation,
-        "services": services
+        "services": services,
+        "navigationDescriptions": navigation_descriptions
     }
 
     output_file.parent.mkdir(parents=True, exist_ok=True)
@@ -86,6 +126,18 @@ def export_json(output_file: Path,
             indent=4
         )
 
+def slugify(value: str) -> str:
+    """Convert Swedish display text into a safe file/folder slug."""
+
+    value = str(value).strip().lower()
+
+    value = unicodedata.normalize("NFKD", value)
+    value = value.encode("ascii", "ignore").decode("ascii")
+
+    value = re.sub(r"[^a-z0-9]+", "-", value)
+    value = value.strip("-")
+
+    return value
 
 def main():
 
@@ -110,11 +162,13 @@ def main():
 
     navigation = build_navigation_tree(df)
     services = build_service_catalog(df)
+    navigation_descriptions = build_navigation_descriptions(df)
 
     export_json(
         output_file,
         navigation,
-        services
+        services,
+        navigation_descriptions
     )
 
     print(f"Generated: {output_file}")
