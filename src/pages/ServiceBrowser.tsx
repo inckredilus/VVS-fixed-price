@@ -5,17 +5,20 @@ import HomePage from "./HomePage";
 import ServiceDetail from "../components/services/ServiceDetail";
 import ServiceOrder from "../components/services/ServiceOrder";
 import ServiceSelection from "../components/services/ServiceSelection";
+import CustomerDetailsForm from "../components/services/CustomerDetailsForm";
 
 import { loadMarkdownOrFallback } from "../utils/loadMarkdown";
 
 import type {
   CartItem,
+  CustomerDetails,
   NavigationLevel,
   Service,
   ServicesJson,
 } from "../types/services";
 
 export default function ServiceBrowser() {
+
   // ---------------------------------------------------------------------------
   // State definitions
   // ---------------------------------------------------------------------------
@@ -30,6 +33,19 @@ export default function ServiceBrowser() {
   const [quantity, setQuantity] = useState<number>(0);
   const [useRotDeduction, setUseRotDeduction] = useState<boolean>(true);
   const [showOrderPage, setShowOrderPage] = useState<boolean>(false);
+  const [showCustomerDetailsPage, setShowCustomerDetailsPage] =
+    useState<boolean>(false);
+
+  const [customerDetails, setCustomerDetails] = useState<CustomerDetails>({
+    firstName: "",
+    lastName: "",
+    address: "",
+    postalCode: "",
+    city: "",
+    phone: "",
+    email: "",
+    comment: "",
+  });
 
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
@@ -119,6 +135,8 @@ useEffect(() => {
     setCurrentLevel(data.navigation);
     setPath([]);
     setSelectedService(null);
+
+    setShowCustomerDetailsPage(false);    
   }
 
   function goBack() {
@@ -208,6 +226,24 @@ useEffect(() => {
     }
   }
 
+  function goBackFromOrder() {
+    setShowOrderPage(false);
+  }
+
+  function goToCustomerDetails() {
+    setShowOrderPage(false);
+    setShowCustomerDetailsPage(true);
+  }
+
+  function goBackToOrderPage() {
+    setShowCustomerDetailsPage(false);
+    setShowOrderPage(true);
+  }
+
+  function submitOrder() {
+    alert("Nästa steg: visa orderbekräftelse");
+  }  
+
   function cancelOrder() {
     const hasCartItems = cartItems.length > 0;
 
@@ -246,11 +282,24 @@ useEffect(() => {
     return <p>Laddar tjänster...</p>;
   }
 
+  if (showCustomerDetailsPage) {
+    return (
+      <CustomerDetailsForm
+        customerDetails={customerDetails}
+        onChange={setCustomerDetails}
+        onBack={goBackToOrderPage}
+        onSubmit={submitOrder}
+      />
+    );
+  }
+
   if (showOrderPage && selectedService) {
     return (
       <ServiceOrder
         cartItems={cartItems}
-        onOk={resetBrowser}
+        onBack={goBackFromOrder}
+        onContinue={goToCustomerDetails}
+        onCancel={cancelOrder}
         formatPrice={formatPrice}
       />
     );

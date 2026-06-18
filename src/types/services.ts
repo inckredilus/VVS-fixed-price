@@ -28,3 +28,14 @@ export type CartItem = {
   quantity: number;
   useRotDeduction: boolean;
 };
+
+export type CustomerDetails = {
+  firstName: string;
+  lastName: string;
+  address: string;
+  postalCode: string;
+  city: string;
+  phone: string;
+  email: string;
+  comment: string;
+};

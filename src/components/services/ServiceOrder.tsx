@@ -2,13 +2,17 @@ import type { CartItem } from "../../types/services";
 
 type Props = {
   cartItems: CartItem[];
-  onOk: () => void;
+  onBack: () => void;
+  onContinue: () => void;
+  onCancel: () => void;
   formatPrice: (value: number) => string;
 };
 
 export default function ServiceOrder({
   cartItems,
-  onOk,
+  onBack,
+  onContinue,
+  onCancel,
   formatPrice,
 }: Props) {
   const totalPrice = cartItems.reduce((sum, item) => {
@@ -64,7 +68,12 @@ export default function ServiceOrder({
         <strong>Pris:</strong> {formatPrice(totalPrice)}
       </p>
 
-      <button onClick={onOk}>OK</button>
+      <div>
+        <button onClick={onBack}>Tillbaka</button>
+        <button onClick={onContinue}>Fortsätt</button>
+        <button onClick={onCancel}>Avbryt</button>
+      </div>
+      
     </main>
   );
 }
