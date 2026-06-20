@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import HomePage from "./HomePage";
-
+import { loadMarkdown } from "../utils/loadMarkdown";
 import ServiceDetail from "../components/services/ServiceDetail";
 import ServiceOrder from "../components/services/ServiceOrder";
 import ServiceSelection from "../components/services/ServiceSelection";
@@ -33,6 +33,8 @@ export default function ServiceBrowser() {
 
   const [descriptionText, setDescriptionText] = useState<string>("");
 
+  const [navigationDescription, setNavigationDescription] = useState<string>("");
+
   const [quantity, setQuantity] = useState<number>(0);
   const [useRotDeduction, setUseRotDeduction] = useState<boolean>(true);
   const [showOrderPage, setShowOrderPage] = useState<boolean>(false);
@@ -60,6 +62,11 @@ export default function ServiceBrowser() {
   const imageSrc = selectedService
     ? `/images/services/${selectedService.serviceId}.jpeg`
     : "";
+
+  const navigationMarkdownPath =
+    data && path.length > 0
+      ? data.navigationDescriptions[path.join("|")] ?? ""
+      : "";
 
   const cartItemCount = cartItems.reduce(
     (sum, item) => sum + item.quantity,
@@ -103,6 +110,16 @@ useEffect(() => {
       );
     });
 }, [selectedService]);
+
+useEffect(() => {
+  if (!navigationMarkdownPath) return;
+
+  loadMarkdown(navigationMarkdownPath)
+    .then(setNavigationDescription)
+    .catch(() => {
+      setNavigationDescription("");
+    });
+}, [navigationMarkdownPath]);
 
   // ---------------------------------------------------------------------------
   // Functions: service selection and navigation
@@ -367,6 +384,7 @@ useEffect(() => {
       onSelect={handleSelection}
       onBack={goBack}
       onHome={goToHomePage}
+      navigationDescription={navigationMarkdownPath ? navigationDescription : ""}
     />
   );
 }

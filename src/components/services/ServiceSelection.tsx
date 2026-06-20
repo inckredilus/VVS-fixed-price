@@ -1,4 +1,5 @@
 import type { NavigationLevel } from "../../types/services";
+import ReactMarkdown from "react-markdown";
 
 type Props = {
   currentLevel: NavigationLevel;
@@ -6,11 +7,13 @@ type Props = {
   onSelect: (label: string) => void;
   onBack: () => void;
   onHome: () => void;
+  navigationDescription: string;
 };
 
 export default function ServiceSelection({
   currentLevel,
   path,
+  navigationDescription,
   onSelect,
   onBack,
   onHome,
@@ -23,6 +26,14 @@ export default function ServiceSelection({
         <p>
           <strong>Val:</strong> {path.join(" / ")}
         </p>
+      )}
+
+      {navigationDescription && (
+        <section>
+          <ReactMarkdown>
+            {navigationDescription}
+          </ReactMarkdown>
+        </section>
       )}
 
       <div>
