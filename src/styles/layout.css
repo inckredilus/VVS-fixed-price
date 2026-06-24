@@ -1,0 +1,21 @@
+/* src/styles/layout.css */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  padding-left: var(--spacing-base);
+  padding-right: var(--spacing-base);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}

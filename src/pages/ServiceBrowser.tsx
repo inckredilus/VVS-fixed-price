@@ -60,7 +60,7 @@ export default function ServiceBrowser() {
   const [showHomePage, setShowHomePage] = useState<boolean>(true);
 
   const imageSrc = selectedService
-    ? `/images/services/${selectedService.serviceId}.jpeg`
+    ? `/images/services/${selectedService.serviceId}.jpg`
     : "";
 
   const navigationMarkdownPath =

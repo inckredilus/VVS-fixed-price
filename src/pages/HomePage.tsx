@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { loadMarkdown } from "../utils/loadMarkdown";
+import "../styles/pages/home.css";
 
 type Props = {
   onStartSelection: () => void;
@@ -48,33 +49,25 @@ useEffect(() => {
   // Page rendering
   // ---------------------------------------------------------------------------
 
-  return (
-    <main>
-      <section>
-        <ReactMarkdown>
-          {titleText}
-        </ReactMarkdown>
+    return (
+    <main className="home">
+      <section className="home__title markdown-content">
+        <ReactMarkdown>{titleText}</ReactMarkdown>
       </section>
 
-      <section>
-        <ReactMarkdown>
-          {introText}
-        </ReactMarkdown>
+      <section className="home__intro markdown-content">
+        <ReactMarkdown>{introText}</ReactMarkdown>
       </section>
 
-      <section>
-        <ReactMarkdown>
-          {servicesText}
-        </ReactMarkdown>
+      <section className="home__services markdown-content">
+        <ReactMarkdown>{servicesText}</ReactMarkdown>
       </section>
 
-      <section>
-        <ReactMarkdown>
-          {aboutText}
-        </ReactMarkdown>
+      <section className="home__about markdown-content">
+        <ReactMarkdown>{aboutText}</ReactMarkdown>
       </section>
 
-      <button onClick={onStartSelection}>
+      <button className="home__button" onClick={onStartSelection}>
         Välj tjänst
       </button>
     </main>

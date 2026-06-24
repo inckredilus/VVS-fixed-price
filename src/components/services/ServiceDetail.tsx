@@ -48,7 +48,7 @@ export default function ServiceDetail({
         src={imageSrc}
         alt={`Bild för ${service.serviceName} - ${service.work}`}
         onError={(event) => {
-          event.currentTarget.src = "/images/image_missing.jpeg";
+          event.currentTarget.src = "/images/image_missing.jpg";
         }}
         style={{
           width: "100%",

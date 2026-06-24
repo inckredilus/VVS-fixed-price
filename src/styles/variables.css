@@ -1,0 +1,13 @@
+/* src/styles/variables.css */
+:root {
+  --color-primary: #00488f;
+  --color-secondary: #0074c2;
+  --color-accent: #008cba;
+  --color-background: #f7f8fa;
+  --color-light: #ffffff;
+  --color-text: #333333;
+
+  --font-family-base: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-size-base: 16px;
+  --spacing-base: 1rem;
+}

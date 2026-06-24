@@ -1,0 +1,25 @@
+/* src/styles/markdown.css */
+.markdown-content h1 {
+  font-size: 2rem;
+  color: var(--color-primary);
+}
+
+.markdown-content h2 {
+  font-size: 1.5rem;
+  color: var(--color-secondary);
+}
+
+.markdown-content p {
+  margin-bottom: var(--spacing-base);
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin-bottom: var(--spacing-base);
+  padding-left: 1.5rem;
+}
+
+.markdown-content a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
