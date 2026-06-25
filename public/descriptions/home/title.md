@@ -1,3 +1,4 @@
-## Trygga VVS lösningar
+# Trygga VVS lösningar
 
-### till ett rimligt pris för ditt hem (v1.2)
+## till ett rimligt pris för ditt hem 
+### (v1.3)

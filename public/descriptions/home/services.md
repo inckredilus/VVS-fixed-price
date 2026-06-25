@@ -1,6 +1,6 @@
-## Vad vi erbjuder
+### Vad vi erbjuder
 
-### Vi erbjuder VVS tjänster inom följande områden
+#### Vi utför VVS tjänster inom följande områden
 
 - Kök
 - Badrum 
@@ -8,7 +8,7 @@
 - Värme
 - Trädgård
 
-### Vi utför arbeteb främst i Västerort i Stockholm
+#### Vi utför arbete främst i Västerort i Stockholm
 
 - Bromma
 - Spånga

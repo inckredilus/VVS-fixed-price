@@ -1,12 +1,25 @@
 /* src/styles/markdown.css */
 .markdown-content h1 {
-  font-size: 2rem;
+   font-size: clamp(2rem, 8vw, 4rem);
   color: var(--color-primary);
 }
 
 .markdown-content h2 {
-  font-size: 1.5rem;
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
   color: var(--color-secondary);
+}
+
+.markdown-content h3 {
+  font-size: clamp(1.25rem, 4vw, 1.8rem);
+  color: var(--color-accent);
+}
+
+.markdown-content h4 {
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+}
+
+.markdown-content h5 {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
 }
 
 .markdown-content p {
