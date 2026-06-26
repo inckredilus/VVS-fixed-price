@@ -52,24 +52,36 @@ useEffect(() => {
     return (
     <main className="home">
       <section className="home__title markdown-content">
-        <ReactMarkdown>{titleText}</ReactMarkdown>
+        <div className="home__hero-content">
+
+          <ReactMarkdown>{titleText}</ReactMarkdown>
+                    
+          <button
+            className="home__hero-button"
+            onClick={onStartSelection}
+          >Till våra tjänster
+          </button>
+
+        </div>
       </section>
 
-      <section className="home__intro markdown-content">
-        <ReactMarkdown>{introText}</ReactMarkdown>
-      </section>
+{/* ---------------------------------------------------------------------------
+    Home information cards
+    --------------------------------------------------------------------------- */}
 
-      <section className="home__services markdown-content">
-        <ReactMarkdown>{servicesText}</ReactMarkdown>
-      </section>
+      <div className="home__cards">
+        <section className="home__card home__card--intro markdown-content">
+          <ReactMarkdown>{introText}</ReactMarkdown>
+        </section>
 
-      <section className="home__about markdown-content">
-        <ReactMarkdown>{aboutText}</ReactMarkdown>
-      </section>
+        <section className="home__card home__card--services markdown-content">
+          <ReactMarkdown>{servicesText}</ReactMarkdown>
+        </section>
 
-      <button className="home__button" onClick={onStartSelection}>
-        Välj tjänst
-      </button>
+        <section className="home__card home__card--about markdown-content">
+          <ReactMarkdown>{aboutText}</ReactMarkdown>
+        </section>
+      </div>
     </main>
   );
 }
