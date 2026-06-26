@@ -1,5 +1,16 @@
+// /src/components/services/ServiceSelection.tsx
+// ---------------------------------------------------------------------------
+// Imports
+// ---------------------------------------------------------------------------
+
 import type { NavigationLevel } from "../../types/services";
 import ReactMarkdown from "react-markdown";
+
+import "../../styles/components/services/service-selection.css";
+
+// ---------------------------------------------------------------------------
+// Component props
+// ---------------------------------------------------------------------------
 
 type Props = {
   currentLevel: NavigationLevel;
@@ -10,6 +21,23 @@ type Props = {
   navigationDescription: string;
 };
 
+// ---------------------------------------------------------------------------
+// Component: ServiceSelection
+//
+// Displays one navigation level in the service selection hierarchy.
+//
+// Responsibilities:
+// - Display the current navigation path.
+// - Display contextual Markdown information for the current level.
+// - Present available service/category choices.
+// - Allow navigation backwards in the hierarchy.
+// - Allow return to the Home page.
+//
+// Styling is handled in:
+//
+//   src/styles/components/services/service-selection.css
+// ---------------------------------------------------------------------------
+
 export default function ServiceSelection({
   currentLevel,
   path,
@@ -19,46 +47,65 @@ export default function ServiceSelection({
   onHome,
 }: Props) {
   return (
-    <main>
-      <h1>Välj VVS-tjänst</h1>
+    <main className="service-selection">
 
-      {path.length > 0 && (
-        <p>
-          <strong>Val:</strong> {path.join(" / ")}
-        </p>
-      )}
+      {/* ---------------------------------------------------------------
+        Page header
+       --------------------------------------------------------------- */}
+      <section className="service-selection__header">
+        <h1 className="service-selection__title">Välj VVS-tjänst</h1>
 
+        {path.length > 0 && (
+          <p className="service-selection__path">
+            <strong>Val:</strong> {path.join(" > ")}
+          </p>
+        )}
+      </section>
+      
+      {/* ---------------------------------------------------------------
+        Current level description
+       --------------------------------------------------------------- */}
       {navigationDescription && (
-        <section>
-          <ReactMarkdown>
-            {navigationDescription}
-          </ReactMarkdown>
+        <section className="service-selection__description markdown-content">
+          <ReactMarkdown>{navigationDescription}</ReactMarkdown>
         </section>
       )}
 
-      <div>
+      {/* ---------------------------------------------------------------
+        Service/category options
+       --------------------------------------------------------------- */}
+      <section className="service-selection__options">
         {Object.keys(currentLevel).map((label) => (
           <button
             key={label}
+            className="service-selection__option"
             onClick={() => onSelect(label)}
-            style={{
-              display: "block",
-              marginBottom: "0.75rem",
-              padding: "0.75rem 1rem",
-              width: "100%",
-              maxWidth: "420px",
-              textAlign: "left",
-            }}
           >
             {label}
           </button>
         ))}
-      </div>
+      </section>
 
-      {path.length > 0 && <button onClick={onBack}>Tillbaka</button>}
+      {/* ---------------------------------------------------------------
+        Navigation actions
+       --------------------------------------------------------------- */}
+      <section className="service-selection__actions">
+        {path.length > 0 && (
+          <button
+            className="service-selection__button service-selection__button--secondary"
+            onClick={onBack}
+          >
+            Tillbaka
+          </button>
+        )}
 
-      <button onClick={onHome}>Startsida</button>
-
+        <button
+          className="service-selection__button service-selection__button--ghost"
+          onClick={onHome}
+        >
+          Startsida
+        </button>
+      </section>
     </main>
   );
 }

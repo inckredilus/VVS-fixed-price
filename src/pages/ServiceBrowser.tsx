@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 
 import HomePage from "./HomePage";
-import { loadMarkdown } from "../utils/loadMarkdown";
 import ServiceDetail from "../components/services/ServiceDetail";
 import ServiceOrder from "../components/services/ServiceOrder";
 import ServiceSelection from "../components/services/ServiceSelection";
 import CustomerDetailsForm from "../components/services/CustomerDetailsForm";
+import OrderConfirmation from "../components/services/OrderConfirmation";
 
-import OrderConfirmation
-  from "../components/services/OrderConfirmation";
-
-import { loadMarkdownOrFallback } from "../utils/loadMarkdown";
+import {
+  loadMarkdown,
+  loadMarkdownOrFallback,
+} from "../utils/loadMarkdown";
 
 import type {
   CartItem,
@@ -21,9 +21,8 @@ import type {
 } from "../types/services";
 
 export default function ServiceBrowser() {
-
   // ---------------------------------------------------------------------------
-  // State definitions
+  // State: loaded service data and current navigation position
   // ---------------------------------------------------------------------------
 
   const [data, setData] = useState<ServicesJson | null>(null);
@@ -31,18 +30,35 @@ export default function ServiceBrowser() {
   const [path, setPath] = useState<string[]>([]);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
-  const [descriptionText, setDescriptionText] = useState<string>("");
+  // ---------------------------------------------------------------------------
+  // State: markdown content for selected service and navigation level
+  // ---------------------------------------------------------------------------
 
-  const [navigationDescription, setNavigationDescription] = useState<string>("");
+  const [descriptionText, setDescriptionText] = useState<string>("");
+  const [navigationDescription, setNavigationDescription] =
+    useState<string>("");
+
+  // ---------------------------------------------------------------------------
+  // State: current service quantity and ROT choice before adding to cart
+  // ---------------------------------------------------------------------------
 
   const [quantity, setQuantity] = useState<number>(0);
   const [useRotDeduction, setUseRotDeduction] = useState<boolean>(true);
+
+  // ---------------------------------------------------------------------------
+  // State: page visibility flags
+  // ---------------------------------------------------------------------------
+
+  const [showHomePage, setShowHomePage] = useState<boolean>(true);
   const [showOrderPage, setShowOrderPage] = useState<boolean>(false);
   const [showCustomerDetailsPage, setShowCustomerDetailsPage] =
     useState<boolean>(false);
-
   const [showConfirmationPage, setShowConfirmationPage] =
-    useState(false);
+    useState<boolean>(false);
+
+  // ---------------------------------------------------------------------------
+  // State: customer details and cart
+  // ---------------------------------------------------------------------------
 
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails>({
     firstName: "",
@@ -57,7 +73,9 @@ export default function ServiceBrowser() {
 
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const [showHomePage, setShowHomePage] = useState<boolean>(true);
+  // ---------------------------------------------------------------------------
+  // Derived values: calculated from state, not stored separately
+  // ---------------------------------------------------------------------------
 
   const imageSrc = selectedService
     ? `/images/services/${selectedService.serviceId}.jpg`
@@ -74,7 +92,7 @@ export default function ServiceBrowser() {
   );
 
   // ---------------------------------------------------------------------------
-  // Effects: load JSON and service descriptions
+  // Effect: load generated service JSON from public/data/services.json
   // ---------------------------------------------------------------------------
 
   useEffect(() => {
@@ -83,6 +101,7 @@ export default function ServiceBrowser() {
         if (!response.ok) {
           throw new Error("Could not load services.json");
         }
+
         return response.json();
       })
       .then((json: ServicesJson) => {
@@ -94,41 +113,65 @@ export default function ServiceBrowser() {
       });
   }, []);
 
-useEffect(() => {
-  if (!selectedService) return;
+  // ---------------------------------------------------------------------------
+  // Effect: load markdown description for the selected final service
+  // ---------------------------------------------------------------------------
+  // The service description uses ServiceID as filename:
+  // /descriptions/services/<ServiceID>.md
+  //
+  // If the service-specific file is missing, the shared fallback file is used:
+  // /descriptions/description_missing.md
+  // ---------------------------------------------------------------------------
 
-  const serviceId = selectedService.serviceId;
+  useEffect(() => {
+    if (!selectedService) return;
 
-  loadMarkdownOrFallback(
-    `/descriptions/services/${serviceId}.md`,
-    "/descriptions/description_missing.md"
-  )
-    .then(setDescriptionText)
-    .catch(() => {
-      setDescriptionText(
-        "Detaljerad beskrivning saknas för denna tjänst."
-      );
-    });
-}, [selectedService]);
+    const serviceId = selectedService.serviceId;
 
-useEffect(() => {
-  if (!navigationMarkdownPath) return;
-
-  loadMarkdown(navigationMarkdownPath)
-    .then(setNavigationDescription)
-    .catch(() => {
-      setNavigationDescription("");
-    });
-}, [navigationMarkdownPath]);
+    loadMarkdownOrFallback(
+      `/descriptions/services/${serviceId}.md`,
+      "/descriptions/description_missing.md"
+    )
+      .then(setDescriptionText)
+      .catch(() => {
+        setDescriptionText(
+          "Detaljerad beskrivning saknas för denna tjänst."
+        );
+      });
+  }, [selectedService]);
 
   // ---------------------------------------------------------------------------
-  // Functions: service selection and navigation
+  // Effect: load optional markdown description for the current navigation level
+  // ---------------------------------------------------------------------------
+  // Navigation descriptions are optional. If the file does not exist, the
+  // selection page simply shows no extra description for that level.
+  // ---------------------------------------------------------------------------
+
+  useEffect(() => {
+    if (!navigationMarkdownPath) return;
+
+    loadMarkdown(navigationMarkdownPath)
+      .then(setNavigationDescription)
+      .catch(() => {
+        setNavigationDescription("");
+      });
+  }, [navigationMarkdownPath]);
+
+  // ---------------------------------------------------------------------------
+  // Navigation: enter the service-selection flow from the Home page
   // ---------------------------------------------------------------------------
 
   function startSelection() {
     setShowHomePage(false);
   }
-  
+
+  // ---------------------------------------------------------------------------
+  // Navigation: handle drill-down through the generated service hierarchy
+  // ---------------------------------------------------------------------------
+  // If the clicked value is a string, it is a ServiceID and we have reached the
+  // final service. Otherwise, it is another navigation level.
+  // ---------------------------------------------------------------------------
+
   function handleSelection(label: string) {
     if (!currentLevel || !data) return;
 
@@ -147,6 +190,13 @@ useEffect(() => {
     setPath([...path, label]);
   }
 
+  // ---------------------------------------------------------------------------
+  // Navigation: reset entire browser flow back to the start state
+  // ---------------------------------------------------------------------------
+  // This clears the cart, quantity, selected service, customer details page,
+  // confirmation page, and returns to the top of the generated navigation tree.
+  // ---------------------------------------------------------------------------
+
   function resetBrowser() {
     if (!data) return;
 
@@ -159,9 +209,16 @@ useEffect(() => {
     setPath([]);
     setSelectedService(null);
 
-    setShowCustomerDetailsPage(false);    
+    setShowCustomerDetailsPage(false);
     setShowConfirmationPage(false);
   }
+
+  // ---------------------------------------------------------------------------
+  // Navigation: go back one level in the service-selection hierarchy
+  // ---------------------------------------------------------------------------
+  // The current tree level is rebuilt from the saved path rather than stored
+  // independently for every previous step.
+  // ---------------------------------------------------------------------------
 
   function goBack() {
     if (!data || path.length === 0) return;
@@ -189,12 +246,16 @@ useEffect(() => {
     setShowOrderPage(false);
   }
 
+  // ---------------------------------------------------------------------------
+  // Navigation: return from service selection to the Home page
+  // ---------------------------------------------------------------------------
+
   function goToHomePage() {
     setShowHomePage(true);
   }
 
   // ---------------------------------------------------------------------------
-  // Functions: quantity and temporary order flow
+  // Quantity controls for the currently selected service
   // ---------------------------------------------------------------------------
 
   function increaseQuantity() {
@@ -208,6 +269,13 @@ useEffect(() => {
   function clearQuantity() {
     setQuantity(0);
   }
+
+  // ---------------------------------------------------------------------------
+  // Cart: add currently selected service to the cart
+  // ---------------------------------------------------------------------------
+  // If the same service is added again with the same ROT selection, quantities
+  // are combined into one cart row. If ROT differs, it becomes a separate row.
+  // ---------------------------------------------------------------------------
 
   function addToOrder() {
     if (!selectedService || quantity === 0) return;
@@ -244,6 +312,10 @@ useEffect(() => {
     setQuantity(0);
   }
 
+  // ---------------------------------------------------------------------------
+  // Page flow: order/cart page
+  // ---------------------------------------------------------------------------
+
   function goToOrderPage() {
     if (cartItems.length > 0) {
       setShowOrderPage(true);
@@ -254,6 +326,10 @@ useEffect(() => {
     setShowOrderPage(false);
   }
 
+  // ---------------------------------------------------------------------------
+  // Page flow: customer details page
+  // ---------------------------------------------------------------------------
+
   function goToCustomerDetails() {
     setShowOrderPage(false);
     setShowCustomerDetailsPage(true);
@@ -263,6 +339,10 @@ useEffect(() => {
     setShowCustomerDetailsPage(false);
     setShowOrderPage(true);
   }
+
+  // ---------------------------------------------------------------------------
+  // Page flow: final order confirmation page
+  // ---------------------------------------------------------------------------
 
   function goToConfirmationPage() {
     setShowCustomerDetailsPage(false);
@@ -275,10 +355,15 @@ useEffect(() => {
   }
 
   function submitOrder() {
-    alert(
-      "Beställning skickad (placeholder)"
-    );
-  } 
+    alert("Beställning skickad (placeholder)");
+  }
+
+  // ---------------------------------------------------------------------------
+  // Cancellation flow
+  // ---------------------------------------------------------------------------
+  // If the cart contains items, ask the customer to confirm before clearing the
+  // entire order.
+  // ---------------------------------------------------------------------------
 
   function cancelOrder() {
     const hasCartItems = cartItems.length > 0;
@@ -295,7 +380,7 @@ useEffect(() => {
   }
 
   // ---------------------------------------------------------------------------
-  // Helper functions
+  // Helper: Swedish currency formatting
   // ---------------------------------------------------------------------------
 
   function formatPrice(value: number) {
