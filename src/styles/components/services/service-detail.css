@@ -1,0 +1,217 @@
+/* ==========================================================================
+   Service detail page
+   --------------------------------------------------------------------------
+   Displays one selected service with image, price, description, quantity,
+   ROT choice, and order actions.
+   ========================================================================== */
+
+.service-detail {
+  width: min(100%, 1100px);
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+/* Header */
+
+.service-detail__header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.service-detail__title {
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  line-height: 1.1;
+}
+
+.service-detail__breadcrumb {
+  margin: 0;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+/* Main content */
+
+.service-detail__content {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.service-detail__image {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.service-detail__summary {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Price card */
+
+.service-detail__price-card,
+.service-detail__description,
+.service-detail__order-panel {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.service-detail__price-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 0.75rem;
+}
+
+.service-detail__price-row:last-child {
+  margin-bottom: 0;
+}
+
+.service-detail__price-row--rot {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* Quantity / ROT */
+
+.service-detail__order-panel {
+  margin-bottom: 1.5rem;
+}
+
+.service-detail__section-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+.service-detail__quantity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.service-detail__quantity-button,
+.service-detail__clear-button {
+  min-width: 44px;
+  min-height: 44px;
+
+  border: 1px solid rgba(0, 72, 143, 0.25);
+  border-radius: 10px;
+
+  background: white;
+  color: var(--color-primary);
+
+  font: inherit;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.service-detail__quantity-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.service-detail__quantity-value {
+  min-width: 2rem;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.service-detail__clear-button {
+  padding: 0 1rem;
+}
+
+.service-detail__rot-choice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  font-size: 1.1rem;
+  font-weight: 500;
+
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+/* Actions */
+
+.service-detail__actions {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.service-detail__button {
+  padding: 0.85rem 1.2rem;
+
+  border-radius: 10px;
+  border: none;
+
+  font: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.service-detail__button--primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.service-detail__button--secondary {
+  background: #e6eef7;
+  color: var(--color-primary);
+}
+
+.service-detail__button--ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid rgba(0, 72, 143, 0.35);
+}
+
+.service-detail__button:disabled,
+.service-detail__quantity-button:disabled,
+.service-detail__clear-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Service reference */
+
+.service-detail__service-id {
+  color: #6b7280;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Tablet / desktop */
+
+@media (min-width: 800px) {
+  .service-detail {
+    padding-top: 2.5rem;
+  }
+
+  .service-detail__content {
+    grid-template-columns: minmax(280px, 480px) 1fr;
+    align-items: start;
+  }
+
+  .service-detail__actions {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

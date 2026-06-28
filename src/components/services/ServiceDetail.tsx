@@ -1,5 +1,13 @@
-import type { Service } from "../../types/services";
 import ReactMarkdown from "react-markdown";
+import type { Service } from "../../types/services";
+import "../../styles/components/services/service-detail.css";
+
+// -----------------------------------------------------------------------------
+// Props
+// -----------------------------------------------------------------------------
+// ServiceDetail is a presentation component.
+// It receives all data and event handlers from ServiceBrowser.tsx.
+// This keeps the service/order state centralized in the parent controller.
 
 type Props = {
   service: Service;
@@ -7,15 +15,19 @@ type Props = {
   imageSrc: string;
   quantity: number;
   cartItemCount: number;
+
   onBack: () => void;
   onCancel: () => void;
   onAddToOrder: () => void;
   onGoToOrderPage: () => void;
+
   onIncreaseQuantity: () => void;
   onDecreaseQuantity: () => void;
   onClearQuantity: () => void;
+
   useRotDeduction: boolean;
   onUseRotDeductionChange: (value: boolean) => void;
+
   formatPrice: (value: number) => string;
 };
 
@@ -36,90 +48,153 @@ export default function ServiceDetail({
   onUseRotDeductionChange,
   formatPrice,
 }: Props) {
-  return (
-    <main>
-      <h1>{service.work}</h1>
+  // ---------------------------------------------------------------------------
+  // Page rendering
+  // ---------------------------------------------------------------------------
 
-      <p>
+return (
+  <main className="service-detail">
+    {/* -----------------------------------------------------------------------
+        Service title and breadcrumb
+        ----------------------------------------------------------------------- */}
+
+    <section className="service-detail__header">
+      <h1 className="service-detail__title">{service.work}</h1>
+
+      <p className="service-detail__breadcrumb">
         {service.category} &gt; {service.serviceName} &gt; {service.work}
       </p>
+    </section>
 
+    {/* -----------------------------------------------------------------------
+        Main service information
+        ----------------------------------------------------------------------- */}
+
+    <section className="service-detail__content">
       <img
+        className="service-detail__image"
         src={imageSrc}
         alt={`Bild för ${service.serviceName} - ${service.work}`}
         onError={(event) => {
           event.currentTarget.src = "/images/image_missing.jpg";
         }}
-        style={{
-          width: "100%",
-          maxWidth: "480px",
-          height: "auto",
-          display: "block",
-          marginBottom: "1rem",
-        }}
       />
 
-      <div>
-        <p>
-          <strong>Ordinarie pris:</strong>{" "}
-          {formatPrice(service.pricing.fullPrice)}
-        </p>
-        <p>
-          <strong>ROT-pris:</strong>{" "}
-          {formatPrice(service.pricing.discountPrice)}
-        </p>
+      <div className="service-detail__summary">
+        <div className="service-detail__price-card">
+          <p className="service-detail__price-row">
+            <strong>Ordinarie pris:</strong>
+            <span>{formatPrice(service.pricing.fullPrice)}</span>
+          </p>
+
+          <p className="service-detail__price-row service-detail__price-row--rot">
+            <strong>ROT-pris:</strong>
+            <span>{formatPrice(service.pricing.discountPrice)}</span>
+          </p>
+        </div>
+
+        <section className="service-detail__description markdown-content">
+          <h2>Beskrivning</h2>
+          <ReactMarkdown>{descriptionText}</ReactMarkdown>
+        </section>
       </div>
+    </section>
 
-      <section>
-        <h2>Beskrivning</h2>
-         <ReactMarkdown>{descriptionText}</ReactMarkdown>
-      </section>
+    {/* -----------------------------------------------------------------------
+        Quantity and ROT selection
+        ----------------------------------------------------------------------- */}
 
-      <section>
-        <h2>Antal</h2>
+    <section className="service-detail__order-panel">
+      <h2 className="service-detail__section-title">Antal</h2>
 
-        <button onClick={onDecreaseQuantity} disabled={quantity === 0}>
-          -
-        </button>
+        <div className="service-detail__quantity-row">
+          <div className="service-detail__quantity">
+            <button
+              className="service-detail__quantity-button"
+              onClick={onDecreaseQuantity}
+              disabled={quantity === 0}
+            >
+              -
+            </button>
 
-        <span style={{ margin: "0 1rem" }}>{quantity}</span>
+            <span className="service-detail__quantity-value">{quantity}</span>
 
-        <button onClick={onIncreaseQuantity}>
-            +
-        </button>
+            <button
+              className="service-detail__quantity-button"
+              onClick={onIncreaseQuantity}
+            >
+              +
+            </button>
 
-        <button onClick={onClearQuantity} disabled={quantity === 0}>
-            Rensa
-        </button>
+            <button
+              className="service-detail__clear-button"
+              onClick={onClearQuantity}
+              disabled={quantity === 0}
+            >
+              Rensa
+            </button>
+          </div>
+          
+          <label className="service-detail__rot-choice">
+            <input
+              type="checkbox"
+              checked={useRotDeduction}
+              onChange={(event) => onUseRotDeductionChange(event.target.checked)}
+            />
+            <span>Använd ROT-avdrag</span>
+          </label>
+        </div>
+          
+{/*      <label className="service-detail__rot-choice">
+        <input
+          type="checkbox"
+          checked={useRotDeduction}
+          onChange={(event) => onUseRotDeductionChange(event.target.checked)}
+        />
+        <span>Använd ROT-avdrag</span>
+      </label> */}
 
-        <label style={{ display: "block", marginTop: "1rem" }}>
-          <input
-            type="checkbox"
-            checked={useRotDeduction}
-            onChange={(event) => onUseRotDeductionChange(event.target.checked)}
-          />{" "}
-          Jag vill använda ROT-avdrag
-        </label>
+    </section>
 
-      </section>
+    {/* -----------------------------------------------------------------------
+        Action buttons
+        ----------------------------------------------------------------------- */}
 
-      <div style={{ marginTop: "1rem" }}>
-        <button onClick={onBack}>Tillbaka</button>
+    <section className="service-detail__actions">
+      <button
+        className="service-detail__button service-detail__button--secondary"
+        onClick={onBack}
+      >
+        Tillbaka
+      </button>
 
-        <button onClick={onAddToOrder} disabled={quantity === 0}>
-          Lägg till
-        </button>
+      <button
+        className="service-detail__button service-detail__button--primary"
+        onClick={onAddToOrder}
+        disabled={quantity === 0}
+      >
+        Lägg till
+      </button>
 
-        <button onClick={onGoToOrderPage} disabled={cartItemCount === 0}>
-          Gå till beställning ({cartItemCount})
-        </button>
+      <button
+        className="service-detail__button service-detail__button--primary"
+        onClick={onGoToOrderPage}
+        disabled={cartItemCount === 0}
+      >
+        Gå till beställning ({cartItemCount})
+      </button>
 
-        <button onClick={onCancel}>Avbryt</button>
-      </div>
+      <button
+        className="service-detail__button service-detail__button--ghost"
+        onClick={onCancel}
+      >
+        Avbryt
+      </button>
+    </section>
 
-      <p>
-        <strong>ServiceID:</strong> {service.serviceId}
-      </p>
-    </main>
-  );
+    <p className="service-detail__service-id">
+      <strong>ServiceID:</strong> {service.serviceId}
+    </p>
+  </main>
+);
 }

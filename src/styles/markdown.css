@@ -1,35 +1,60 @@
 /* src/styles/markdown.css */
+
+/* General Markdown styling used across the app.
+   Page-specific CSS, such as home.css, may override these rules. */
+
 .markdown-content h1 {
-   font-size: clamp(2rem, 8vw, 4rem);
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
   color: var(--color-primary);
 }
 
 .markdown-content h2 {
-  font-size: clamp(1.6rem, 5vw, 2.5rem);
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+  font-size: clamp(1.35rem, 4vw, 1.9rem);
   color: var(--color-secondary);
 }
 
 .markdown-content h3 {
-  font-size: clamp(1.25rem, 4vw, 1.8rem);
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+  font-size: clamp(1.15rem, 3vw, 1.5rem);
   color: var(--color-accent);
 }
 
 .markdown-content h4 {
-  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+  color: var(--color-primary);
 }
 
 .markdown-content h5 {
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: var(--color-primary);
+  font-weight: 600;
 }
 
 .markdown-content p {
+  margin-top: 0;
   margin-bottom: var(--spacing-base);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .markdown-content ul,
 .markdown-content ol {
+  margin-top: 0;
   margin-bottom: var(--spacing-base);
   padding-left: 1.5rem;
+}
+
+.markdown-content li {
+  margin-bottom: 0.35rem;
 }
 
 .markdown-content a {
