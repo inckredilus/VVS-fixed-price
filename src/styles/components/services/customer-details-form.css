@@ -1,0 +1,137 @@
+/* ==========================================================================
+   Customer Details Form
+   --------------------------------------------------------------------------
+   Collects customer contact information before order confirmation.
+
+   The form is designed mobile-first and adapts gracefully to larger screens.
+   ========================================================================== */
+
+.customer-form {
+  width: min(100%, 700px);
+
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+/* ==========================================================================
+   Page title
+   ========================================================================== */
+
+.customer-form__title {
+  margin-bottom: 2rem;
+
+  text-align: center;
+
+  color: var(--color-primary);
+
+  font-size: clamp(2rem, 7vw, 3rem);
+}
+
+/* ==========================================================================
+   Form fields
+   ========================================================================== */
+
+.customer-form__field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+
+  margin-bottom: 1.25rem;
+
+  font-weight: 600;
+}
+
+.customer-form__input,
+.customer-form__textarea {
+  width: 100%;
+
+  padding: 0.9rem 1rem;
+
+  border: 1px solid #cfd8e3;
+  border-radius: 10px;
+
+  font: inherit;
+  font-weight: normal;
+
+  background: white;
+}
+
+.customer-form__input:focus,
+.customer-form__textarea:focus {
+  outline: none;
+
+  border-color: var(--color-primary);
+
+  box-shadow: 0 0 0 3px rgba(0, 72, 143, 0.15);
+}
+
+.customer-form__textarea {
+  min-height: 120px;
+
+  resize: vertical;
+}
+
+/* ==========================================================================
+   Action buttons
+   ========================================================================== */
+
+.customer-form__actions {
+  display: flex;
+
+  justify-content: center;
+  gap: 0.75rem;
+
+  flex-wrap: wrap;
+
+  margin-top: 2rem;
+}
+
+.customer-form__button {
+  min-width: 140px;
+
+  padding: 0.85rem 1.2rem;
+
+  border: none;
+  border-radius: 10px;
+
+  font: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.customer-form__button--primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.customer-form__button--secondary {
+  background: #e6eef7;
+  color: var(--color-primary);
+}
+
+.customer-form__button--ghost {
+  background: transparent;
+
+  color: var(--color-primary);
+
+  border: 1px solid rgba(0, 72, 143, 0.35);
+}
+
+.customer-form__button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Desktop adjustments
+   ========================================================================== */
+
+@media (min-width: 800px) {
+
+  .customer-form {
+    padding-top: 2.5rem;
+  }
+
+}

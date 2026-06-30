@@ -1,4 +1,14 @@
 import type { CustomerDetails } from "../../types/services";
+import "../../styles/components/services/customer-details-form.css";
+
+// -----------------------------------------------------------------------------
+// Props
+// -----------------------------------------------------------------------------
+// CustomerDetailsForm is a presentation component.
+//
+// It receives the current customer details object and sends changes back to
+// ServiceBrowser.tsx through onChange. Navigation and order-flow decisions are
+// also handled by the parent component.
 
 type Props = {
   customerDetails: CustomerDetails;
@@ -15,6 +25,12 @@ export default function CustomerDetailsForm({
   onContinue,
   onCancel,
 }: Props) {
+  // ---------------------------------------------------------------------------
+  // Helper functions
+  // ---------------------------------------------------------------------------
+  // updateField updates one customer-detail field while keeping the rest of the
+  // form data unchanged.
+
   function updateField(field: keyof CustomerDetails, value: string) {
     onChange({
       ...customerDetails,
@@ -22,7 +38,13 @@ export default function CustomerDetailsForm({
     });
   }
 
-const isFormComplete =
+  // ---------------------------------------------------------------------------
+  // Form validation
+  // ---------------------------------------------------------------------------
+  // All fields except comment are required before the customer can continue to
+  // the order confirmation page.
+
+  const isFormComplete =
     customerDetails.firstName.trim() !== "" &&
     customerDetails.lastName.trim() !== "" &&
     customerDetails.address.trim() !== "" &&
@@ -31,95 +53,132 @@ const isFormComplete =
     customerDetails.phone.trim() !== "" &&
     customerDetails.email.trim() !== "";
 
-  return (
-    <main>
-      <h1>Kunduppgifter</h1>
+  // ---------------------------------------------------------------------------
+  // Page rendering
+  // ---------------------------------------------------------------------------
 
-      <label>
+  return (
+    <main className="customer-form">
+      <h1 className="customer-form__title">
+        Kunduppgifter
+      </h1>
+
+      {/* ---------------------------------------------------------------------
+          Customer name
+          --------------------------------------------------------------------- */}
+
+      <label className="customer-form__field">
         Förnamn
-        <input
+        <input className="customer-form__input"
           type="text"
           value={customerDetails.firstName}
           onChange={(event) => updateField("firstName", event.target.value)}
         />
       </label>
 
-      <label>
+      <label className="customer-form__field">
         Efternamn
-        <input
+        <input className="customer-form__input"
           type="text"
           value={customerDetails.lastName}
           onChange={(event) => updateField("lastName", event.target.value)}
         />
       </label>
 
-      <label>
+      {/* ---------------------------------------------------------------------
+          Address
+          --------------------------------------------------------------------- */}
+
+      <label className="customer-form__field">
         Adress
-        <input
+        <input className="customer-form__input"
           type="text"
           value={customerDetails.address}
           onChange={(event) => updateField("address", event.target.value)}
         />
       </label>
 
-      <label>
+      <label className="customer-form__field">
         Postnummer
-        <input
+        <input className="customer-form__input"
           type="text"
           value={customerDetails.postalCode}
           onChange={(event) => updateField("postalCode", event.target.value)}
         />
       </label>
 
-      <label>
+      <label className="customer-form__field">
         Ort
-        <input
+        <input className="customer-form__input"
           type="text"
           value={customerDetails.city}
           onChange={(event) => updateField("city", event.target.value)}
         />
       </label>
 
-      <label>
+      {/* ---------------------------------------------------------------------
+          Contact details
+          --------------------------------------------------------------------- */}
+
+      <label className="customer-form__field">
         Telefon
-        <input
+        <input className="customer-form__input"
           type="tel"
           value={customerDetails.phone}
           onChange={(event) => updateField("phone", event.target.value)}
         />
       </label>
 
-      <label>
+      <label className="customer-form__field">
         E-post
-        <input
+        <input className="customer-form__input"
           type="email"
           value={customerDetails.email}
           onChange={(event) => updateField("email", event.target.value)}
         />
       </label>
 
-      <label>
+      {/* ---------------------------------------------------------------------
+          Optional customer comment
+          --------------------------------------------------------------------- */}
+
+      <label className="customer-form__field">
         Kommentar
-        <textarea
+        <textarea  className="customer-form__textarea"
           value={customerDetails.comment}
           onChange={(event) => updateField("comment", event.target.value)}
         />
       </label>
 
-      <div>
-        <button onClick={onBack}>
-            Tillbaka
-        </button>
+      {/* ---------------------------------------------------------------------
+          Navigation buttons
+          ---------------------------------------------------------------------
+          Tillbaka : Return to the order/cart page.
+          Fortsätt: Continue to order confirmation, enabled only when required
+                    fields are completed.
+          Avbryt  : Cancel the entire order flow through the parent controller.
+          --------------------------------------------------------------------- */}
 
-        <button onClick={onContinue} disabled={!isFormComplete}>
+      <div className="customer-form__actions">
+        <button 
+          className="customer-form__button customer-form__button--secondary"
+          onClick={onBack}>
+            Tillbaka
+          </button>
+
+        <button 
+          className="customer-form__button customer-form__button--primary"
+          onClick={onContinue} 
+          disabled={!isFormComplete}>
             Fortsätt
         </button>
 
-        <button onClick={onCancel}>
+        <button 
+          className="customer-form__button customer-form__button--ghost"
+          onClick={onCancel}>
             Avbryt
         </button>
       </div>
-
     </main>
   );
 }

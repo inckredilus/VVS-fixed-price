@@ -1,5 +1,6 @@
 import type { CartItem } from "../../types/services";
 import { shouldShowEquipment } from "../../utils/orderHelpers";
+import "../../styles/components/services/service-order.css";
 
 // -----------------------------------------------------------------------------
 // Props
@@ -47,13 +48,15 @@ export default function ServiceOrder({
   // ---------------------------------------------------------------------------
 
   return (
-    <main>
+    <main className="service-order">
 
       {/* -----------------------------------------------------------------------
           Page title
           ----------------------------------------------------------------------- */}
 
-      <h1>Din beställning</h1>
+      <h1 className="service-order__title">
+        Din beställning
+      </h1>
 
       {/* -----------------------------------------------------------------------
           Ordered services
@@ -79,9 +82,11 @@ export default function ServiceOrder({
         const rowPrice = unitPrice * item.quantity;
 
         return (
-          <section key={`${item.service.serviceId}-${index}`}>
-
-            <h2>
+          <section
+            className="service-order__item"
+            key={`${item.service.serviceId}-${index}`}
+          >
+            <h2 className="service-order__item-title">
               {item.service.serviceName} - {item.service.work}
             </h2>
 
@@ -122,7 +127,7 @@ export default function ServiceOrder({
               {item.service.serviceId}
             </p>
 
-            <hr />
+            <hr className="service-order__divider" />
           </section>
         );
       })}
@@ -131,9 +136,11 @@ export default function ServiceOrder({
           Order total
           ----------------------------------------------------------------------- */}
 
-      <h2>Totalt</h2>
+      <h2 className="service-order__total-title">
+        Totalt
+      </h2>
 
-      <p>
+      <p className="service-order__total-price">
         <strong>Pris:</strong> {formatPrice(totalPrice)}
       </p>
 
@@ -145,16 +152,25 @@ export default function ServiceOrder({
           Avbryt  : Cancel the entire order process.
           ----------------------------------------------------------------------- */}
 
-      <div>
-        <button onClick={onBack}>
+      <div className="service-order__actions">
+        <button 
+          className="service-order__button service-order__button--secondary"
+          onClick={onBack}
+        >
           Tillbaka
         </button>
 
-        <button onClick={onContinue}>
+        <button 
+          className="service-order__button service-order__button--primary"
+          onClick={onContinue}
+        >
           Fortsätt
         </button>
 
-        <button onClick={onCancel}>
+        <button 
+          className="service-order__button service-order__button--ghost"
+          onClick={onCancel}
+        >
           Avbryt
         </button>
       </div>
