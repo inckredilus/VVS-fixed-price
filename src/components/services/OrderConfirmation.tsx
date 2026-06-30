@@ -4,11 +4,26 @@ import type {
 } from "../../types/services";
 
 import { shouldShowEquipment } from "../../utils/orderHelpers";
+import "../../styles/components/services/order-confirmation.css";
+
+// -----------------------------------------------------------------------------
+// Props
+// -----------------------------------------------------------------------------
+// OrderConfirmation is a presentation component.
+//
+// It displays the complete order before final submission:
+// - Customer information
+// - Ordered services
+// - Total price
+//
+// All navigation and submission logic is handled by ServiceBrowser.tsx.
 
 type Props = {
   cartItems: CartItem[];
   customerDetails: CustomerDetails;
+
   formatPrice: (value: number) => string;
+
   onBack: () => void;
   onSubmit: () => void;
   onCancel: () => void;
@@ -22,6 +37,14 @@ export default function OrderConfirmation({
   onSubmit,
   onCancel,
 }: Props) {
+
+  // ---------------------------------------------------------------------------
+  // Derived values
+  // ---------------------------------------------------------------------------
+  // Calculate the final order price using the customer's selected ROT option
+  // for each cart item.
+  // ---------------------------------------------------------------------------
+
   const totalPrice = cartItems.reduce((sum, item) => {
     const unitPrice = item.useRotDeduction
       ? item.service.pricing.discountPrice
@@ -30,97 +53,174 @@ export default function OrderConfirmation({
     return sum + unitPrice * item.quantity;
   }, 0);
 
+  // ---------------------------------------------------------------------------
+  // Page rendering
+  // ---------------------------------------------------------------------------
+
   return (
-    <main>
-      <h1>Bekräfta beställning</h1>
+    <main className="order-confirmation">
 
-      <h2>Kunduppgifter</h2>
+      {/* -----------------------------------------------------------------------
+          Page title
+          ----------------------------------------------------------------------- */}
 
-      <p>
-        {customerDetails.firstName}{" "}
-        {customerDetails.lastName}
-      </p>
+      <h1 className="order-confirmation__title">Bekräfta beställning</h1>
 
-      <p>{customerDetails.address}</p>
+      {/* -----------------------------------------------------------------------
+          Customer details
+          -----------------------------------------------------------------------
+          Display the customer information exactly as entered in the previous
+          step before the order is finally submitted.
+          ----------------------------------------------------------------------- */}
 
-      <p>
-        {customerDetails.postalCode}{" "}
-        {customerDetails.city}
-      </p>
+      <section className="order-confirmation__card">
+        <h2 className="order-confirmation__section-title">
+          Kunduppgifter
+        </h2>
 
-      <p>{customerDetails.phone}</p>
+        <p>
+          {customerDetails.firstName}{" "}
+          {customerDetails.lastName}
+        </p>
 
-      <p>{customerDetails.email}</p>
+        <p>{customerDetails.address}</p>
 
-      {customerDetails.comment && (
-        <>
-          <h3>Kommentar</h3>
-          <p>{customerDetails.comment}</p>
-        </>
-      )}
+        <p>
+          {customerDetails.postalCode}{" "}
+          {customerDetails.city}
+        </p>
 
-      <h2>Beställning</h2>
+        <p>{customerDetails.phone}</p>
 
-      {cartItems.map((item, index) => {
-        const unitPrice = item.useRotDeduction
-          ? item.service.pricing.discountPrice
-          : item.service.pricing.fullPrice;
+        <p>{customerDetails.email}</p>
 
-        return (
-          <div
-            key={`${item.service.serviceId}-${index}`}
-          >
-            <p>
-              {item.service.serviceName}
-              {" - "}
-              {item.service.work}
-            </p>
+        {/* -----------------------------------------------------------------------
+            Optional customer comment
+            ----------------------------------------------------------------------- */}
 
-            {shouldShowEquipment(item.service.equipment) && (
-            <p>
-                <strong>Utrustning:</strong> {item.service.equipment}
-            </p>
-            )}
+        {customerDetails.comment && (
+          <>
+            <h3>Kommentar</h3>
+            <p>{customerDetails.comment}</p>
+          </>
+        )}
 
-            <p>
-              Antal: {item.quantity}
-            </p>
+      </section>
 
-            <p>
-              {item.useRotDeduction
-                ? "Med ROT-avdrag"
-                : "Utan ROT-avdrag"}
-            </p>
+      {/* -----------------------------------------------------------------------
+          Ordered services
+          -----------------------------------------------------------------------
+          Each cart row displays:
+          - Service
+          - Optional equipment selection
+          - Quantity
+          - ROT selection
+          - Price for that order row
+          ----------------------------------------------------------------------- */}
 
-            <p>
-              Pris:{" "}
-              {formatPrice(
-                unitPrice * item.quantity
+      <section className="order-confirmation__card">
+        <h2 className="order-confirmation__section-title">
+          Beställning
+        </h2>
+
+        {cartItems.map((item, index) => {
+
+          // ---------------------------------------------------------------------
+          // Calculate price for current cart row
+          // ---------------------------------------------------------------------
+
+          const unitPrice = item.useRotDeduction
+            ? item.service.pricing.discountPrice
+            : item.service.pricing.fullPrice;
+
+          const rowPrice = unitPrice * item.quantity;
+
+          return (
+            <div className="order-confirmation__item"
+              key={`${item.service.serviceId}-${index}`}>
+            
+              <p>
+                {item.service.serviceName}
+                {" - "}
+                {item.service.work}
+              </p>
+
+              {/* ---------------------------------------------------------------
+                  Only display equipment if the customer selected a specific
+                  product. Generic values such as "ospec" are hidden.
+                  --------------------------------------------------------------- */}
+
+              {shouldShowEquipment(item.service.equipment) && (
+                <p>
+                  <strong>Utrustning:</strong>{" "}
+                  {item.service.equipment}
+                </p>
               )}
-            </p>
 
-            <hr />
-          </div>
-        );
-      })}
+              <p>
+                <strong>Antal:</strong> {item.quantity}
+              </p>
 
-      <h2>
-        Totalt: {formatPrice(totalPrice)}
-      </h2>
+              <p>
+                <strong>Prisval:</strong>{" "}
+                {item.useRotDeduction
+                  ? "Med ROT-avdrag"
+                  : "Utan ROT-avdrag"}
+              </p>
 
-      <div>
-        <button onClick={onBack}>
+              <p>
+                <strong>Pris:</strong>{" "}
+                {formatPrice(rowPrice)}
+              </p>
+
+              <hr className="order-confirmation__divider" />
+            </div>
+          );
+        })}
+
+      </section>
+
+      {/* -----------------------------------------------------------------------
+          Order total
+          ----------------------------------------------------------------------- */}
+
+      <section className="order-confirmation__total">
+        <h2>
+          Totalt: {formatPrice(totalPrice)}
+        </h2>
+      </section>
+
+      {/* -----------------------------------------------------------------------
+          Navigation buttons
+          -----------------------------------------------------------------------
+          Tillbaka : Return to Customer Details page.
+          Beställ : Final order submission (currently placeholder).
+          Avbryt  : Cancel the entire order flow.
+          ----------------------------------------------------------------------- */}
+
+      <div className="order-confirmation__actions">
+        <button
+          className="order-confirmation__button order-confirmation__button--secondary"
+          onClick={onBack}
+        >
           Tillbaka
         </button>
 
-        <button onClick={onSubmit}>
+       <button
+          className="order-confirmation__button order-confirmation__button--primary"
+          onClick={onSubmit}
+        >
           Beställ
         </button>
 
-        <button onClick={onCancel}>
+        <button
+          className="order-confirmation__button order-confirmation__button--ghost"
+          onClick={onCancel}
+        >
           Avbryt
         </button>
       </div>
+
     </main>
   );
 }

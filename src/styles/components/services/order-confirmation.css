@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Order Confirmation Page
+   --------------------------------------------------------------------------
+   Final review page before submitting the order.
+
+   Shows:
+   - Customer details
+   - Selected services
+   - Total price
+   - Final navigation/action buttons
+
+   Mobile-first layout.
+   ========================================================================== */
+
+.order-confirmation {
+  width: min(100%, 900px);
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+/* Page title */
+
+.order-confirmation__title {
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--color-primary);
+  font-size: clamp(2rem, 7vw, 3.2rem);
+}
+
+/* Shared card layout */
+
+.order-confirmation__card {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.order-confirmation__section-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+}
+
+/* Individual order item */
+
+.order-confirmation__item {
+  margin-bottom: 1.25rem;
+}
+
+.order-confirmation__item p {
+  margin-bottom: 0.5rem;
+}
+
+.order-confirmation__divider {
+  margin-top: 1rem;
+  border: none;
+  border-top: 1px solid #d7d7d7;
+}
+
+/* Total */
+
+.order-confirmation__total {
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  text-align: center;
+  background: #e6eef7;
+  color: var(--color-primary);
+  border-radius: 12px;
+}
+
+.order-confirmation__total h2 {
+  margin: 0;
+  font-size: clamp(1.4rem, 5vw, 2rem);
+}
+
+/* Action buttons */
+
+.order-confirmation__actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.order-confirmation__button {
+  min-width: 140px;
+  padding: 0.85rem 1.2rem;
+  border-radius: 10px;
+  border: none;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.order-confirmation__button--primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.order-confirmation__button--secondary {
+  background: #e6eef7;
+  color: var(--color-primary);
+}
+
+.order-confirmation__button--ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid rgba(0, 72, 143, 0.35);
+}
+
+/* Desktop spacing */
+
+@media (min-width: 800px) {
+  .order-confirmation {
+    padding-top: 2.5rem;
+  }
+}
