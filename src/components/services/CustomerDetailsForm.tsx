@@ -86,88 +86,124 @@ const isFormComplete =
           Customer name
           --------------------------------------------------------------------- */}
 
-      <label className="customer-form__field">
-        Förnamn
-        <input className="customer-form__input"
-          type="text"
-          value={customerDetails.firstName}
-          onChange={(event) => updateField("firstName", event.target.value)}
-        />
-      </label>
+      <section className="customer-form__group">
+        <h2 className="customer-form__group-title">Namn</h2>
 
-      <label className="customer-form__field">
-        Efternamn
-        <input className="customer-form__input"
-          type="text"
-          value={customerDetails.lastName}
-          onChange={(event) => updateField("lastName", event.target.value)}
-        />
-      </label>
+        <div className="customer-form__row customer-form__row--two">
+          <label className="customer-form__field">
+            <span className="customer-form__label">Förnamn</span>
+            <input
+              className="customer-form__input"
+              type="text"
+              placeholder="Förnamn"
+              value={customerDetails.firstName}
+              onChange={(event) => updateField("firstName", event.target.value)}
+            />
+          </label>
+
+          <label className="customer-form__field">
+            <span className="customer-form__label">Efternamn</span>
+            <input
+              className="customer-form__input"
+              type="text"
+              placeholder="Efternamn"
+              value={customerDetails.lastName}
+              onChange={(event) => updateField("lastName", event.target.value)}
+            />
+          </label>
+        </div>
+      </section>
 
       {/* ---------------------------------------------------------------------
           Address
           --------------------------------------------------------------------- */}
 
-      <label className="customer-form__field">
-        Adress
-        <input className="customer-form__input"
-          type="text"
-          value={customerDetails.address}
-          onChange={(event) => updateField("address", event.target.value)}
-        />
-      </label>
+      <section className="customer-form__group">
+        <h2 className="customer-form__group-title">Adress</h2>
 
-      <label className="customer-form__field">
-        Postnummer
-        <input className="customer-form__input"
-          type="text"
-          value={customerDetails.postalCode}
-          onChange={(event) => updateField("postalCode", event.target.value)}
-        />
-      </label>
+        <label className="customer-form__field">
+          <span className="customer-form__label">Gatuadress</span>
+          <input
+            className="customer-form__input"
+            type="text"
+            placeholder="Gatuadress"
+            value={customerDetails.address}
+            onChange={(event) => updateField("address", event.target.value)}
+          />
+        </label>
 
-      <label className="customer-form__field">
-        Ort
-        <input className="customer-form__input"
-          type="text"
-          value={customerDetails.city}
-          onChange={(event) => updateField("city", event.target.value)}
-        />
-      </label>
+        <div className="customer-form__row customer-form__row--postal">
+          <label className="customer-form__field">
+            <span className="customer-form__label">Postnummer</span>
+            <input
+              className="customer-form__input"
+              type="text"
+              placeholder="Postnummer"
+              value={customerDetails.postalCode}
+              onChange={(event) => updateField("postalCode", event.target.value)}
+            />
+          </label>
+
+          <label className="customer-form__field">
+            <span className="customer-form__label">Ort</span>
+            <input
+              className="customer-form__input"
+              type="text"
+              placeholder="Ort"
+              value={customerDetails.city}
+              onChange={(event) => updateField("city", event.target.value)}
+            />
+          </label>
+        </div>
+      </section>
 
       {/* ---------------------------------------------------------------------
           Contact details
           --------------------------------------------------------------------- */}
 
-      <label className="customer-form__field">
-        Telefon
-        <input className="customer-form__input"
-          type="tel"
-          value={customerDetails.phone}
-          onChange={(event) => updateField("phone", event.target.value)}
-        />
-      </label>
+      <section className="customer-form__group">
+        <h2 className="customer-form__group-title">Kontakt</h2>
 
-      <label className="customer-form__field">
-        E-post
-        <input className="customer-form__input"
-          type="email"
-          value={customerDetails.email}
-          onChange={(event) => updateField("email", event.target.value)}
-        />
-      </label>
+        <label className="customer-form__field">
+          <span className="customer-form__label">Telefon</span>
+          <input
+            className="customer-form__input"
+            type="tel"
+            placeholder="Telefon"
+            value={customerDetails.phone}
+            onChange={(event) => updateField("phone", event.target.value)}
+          />
+        </label>
+
+        <label className="customer-form__field">
+          <span className="customer-form__label">E-post</span>
+          <input
+            className="customer-form__input"
+            type="email"
+            placeholder="E-post"
+            value={customerDetails.email}
+            onChange={(event) => updateField("email", event.target.value)}
+          />
+        </label>
+      </section>
 
       {/* ---------------------------------------------------------------------
           Optional customer comment
           --------------------------------------------------------------------- */}
 
-      <label className="customer-form__field">
-        Kommentar
-        <textarea  className="customer-form__textarea"
-          value={customerDetails.comment}
-          onChange={(event) => updateField("comment", event.target.value)}
-        />
-      </label>
+      <section className="customer-form__group">
+        <h2 className="customer-form__group-title">Kommentar</h2>
+
+        <label className="customer-form__field">
+          <span className="customer-form__label">Kommentar</span>
+          <textarea
+            className="customer-form__textarea"
+            placeholder="Kommentar"
+            value={customerDetails.comment}
+            onChange={(event) => updateField("comment", event.target.value)}
+          />
+        </label>
+      </section>
 
       {/* ---------------------------------------------------------------------
           Navigation buttons

@@ -73,6 +73,64 @@
 }
 
 /* ==========================================================================
+   Grouped customer fields
+   --------------------------------------------------------------------------
+   Groups related inputs under visible section headings while field-specific
+   labels remain available for accessibility.
+   ========================================================================== */
+
+.customer-form__group {
+  margin-bottom: 1.5rem;
+}
+
+.customer-form__group-title {
+  margin: 0 0 0.75rem;
+
+  color: var(--color-primary);
+
+  font-size: clamp(1.15rem, 4vw, 1.4rem);
+}
+
+/* Rows allow related fields to sit beside each other on wider screens. */
+.customer-form__row {
+  display: grid;
+  gap: 1rem;
+}
+
+.customer-form__row--two {
+  grid-template-columns: 1fr 1fr;
+}
+
+.customer-form__row--postal {
+  grid-template-columns: 160px 1fr;
+}
+
+/* Keep labels available for screen readers, but hide them visually. */
+.customer-form__label {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+
+  white-space: nowrap;
+  border: 0;
+}
+
+/* On phones, stacked fields are easier to read and tap. */
+@media (max-width: 600px) {
+  .customer-form__row--two,
+  .customer-form__row--postal {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
    Action buttons
    ========================================================================== */
 

@@ -3,14 +3,14 @@
         "Kök": {
             "Köksblandare": {
                 "Byte / montering": {
-                    "FM Mattsson (9000E)": "1010",
-                    "Mora Armatur (MMIX K5)": "1011",
-                    "Ospec": "1012"
+                    "Valfri": "1010",
+                    "FM Mattsson (9000E)": "1011",
+                    "Mora Armatur (MMIX K5)": "1012"
                 }
             },
             "Köksvattenlås": {
                 "Byte / montering": {
-                    "Ospec (standard teleskop)": "1020"
+                    "Valfri (standard teleskop)": "1020"
                 }
             }
         },
@@ -127,7 +127,7 @@
             "serviceId": 1010,
             "category": "Kök",
             "serviceName": "Köksblandare",
-            "equipment": "FM Mattsson (9000E)",
+            "equipment": "Valfri",
             "work": "Byte / montering",
             "pricing": {
                 "fullPrice": 7903.0,
@@ -138,7 +138,7 @@
             "serviceId": 1011,
             "category": "Kök",
             "serviceName": "Köksblandare",
-            "equipment": "Mora Armatur (MMIX K5)",
+            "equipment": "FM Mattsson (9000E)",
             "work": "Byte / montering",
             "pricing": {
                 "fullPrice": 7903.0,
@@ -149,7 +149,7 @@
             "serviceId": 1012,
             "category": "Kök",
             "serviceName": "Köksblandare",
-            "equipment": "Ospec",
+            "equipment": "Mora Armatur (MMIX K5)",
             "work": "Byte / montering",
             "pricing": {
                 "fullPrice": 7903.0,
@@ -160,7 +160,7 @@
             "serviceId": 1020,
             "category": "Kök",
             "serviceName": "Köksvattenlås",
-            "equipment": "Ospec (standard teleskop)",
+            "equipment": "Valfri (standard teleskop)",
             "work": "Byte / montering",
             "pricing": {
                 "fullPrice": 4400.0,
