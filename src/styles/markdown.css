@@ -61,3 +61,61 @@
   color: var(--color-accent);
   text-decoration: underline;
 }
+
+/* ==========================================================================
+   Code blocks
+   --------------------------------------------------------------------------
+   Styles for fenced code blocks (```), inline code (`), and syntax highlighting.
+   ========================================================================== */
+
+.markdown-content blockquote {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+
+  border-left: 4px solid var(--color-primary);
+  background: #f5f9fc;
+
+  font-style: italic;
+}
+
+.markdown-content hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid #d7d7d7;
+}
+
+.markdown-content strong {
+  font-weight: 700;
+}
+
+.markdown-content em {
+  font-style: italic;
+}
+
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.markdown-content th,
+.markdown-content td {
+  padding: 0.6rem;
+  border: 1px solid #d7d7d7;
+}
+
+.markdown-content th {
+  background: #f5f9fc;
+}
+
+.markdown-content img {
+  display: block;
+
+  max-width: 100%;
+  height: auto;
+
+  margin: 1rem auto;
+
+  border-radius: 6px;
+}
+

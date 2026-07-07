@@ -1,4 +1,6 @@
 import ReactMarkdown from "react-markdown";
+import "../../styles/buttons.css";
+
 import type { Service } from "../../types/services";
 import "../../styles/components/services/service-detail.css";
 
@@ -143,17 +145,7 @@ return (
             />
             <span>Använd ROT-avdrag</span>
           </label>
-        </div>
-          
-{/*      <label className="service-detail__rot-choice">
-        <input
-          type="checkbox"
-          checked={useRotDeduction}
-          onChange={(event) => onUseRotDeductionChange(event.target.checked)}
-        />
-        <span>Använd ROT-avdrag</span>
-      </label> */}
-
+        </div>        
     </section>
 
     {/* -----------------------------------------------------------------------
@@ -162,14 +154,14 @@ return (
 
     <section className="service-detail__actions">
       <button
-        className="service-detail__button service-detail__button--secondary"
+        className="button button--secondary"
         onClick={onBack}
       >
         Tillbaka
       </button>
 
       <button
-        className="service-detail__button service-detail__button--primary"
+        className="button button--primary"
         onClick={onAddToOrder}
         disabled={quantity === 0}
       >
@@ -177,7 +169,7 @@ return (
       </button>
 
       <button
-        className="service-detail__button service-detail__button--primary"
+        className="button button--primary"
         onClick={onGoToOrderPage}
         disabled={cartItemCount === 0}
       >
@@ -185,7 +177,7 @@ return (
       </button>
 
       <button
-        className="service-detail__button service-detail__button--ghost"
+        className="button button--ghost"
         onClick={onCancel}
       >
         Avbryt

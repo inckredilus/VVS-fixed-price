@@ -43,7 +43,7 @@
   padding: 1.25rem;
 
   background: white;
-  border-radius: 12px;
+  border-radius: 4x;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
@@ -111,32 +111,6 @@
 
   max-width: 500px;
   margin: 0 auto;
-}
-
-.service-selection__button {
-  flex: 1;
-  max-width: 200px;
-
-  padding: 0.85rem 1.2rem;
-
-  border-radius: 10px;
-  border: none;
-
-  font: inherit;
-  font-weight: 600;
-
-  cursor: pointer;
-}
-
-.service-selection__button--secondary {
-  background: var(--color-primary);
-  color: white;
-}
-
-.service-selection__button--ghost {
-  background: transparent;
-  color: var(--color-primary);
-  border: 1px solid rgba(0, 72, 143, 0.35);
 }
 
 /* ==========================================================================

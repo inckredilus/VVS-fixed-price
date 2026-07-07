@@ -3,9 +3,10 @@
 // Imports
 // ---------------------------------------------------------------------------
 
-import type { NavigationLevel } from "../../types/services";
 import ReactMarkdown from "react-markdown";
+import type { NavigationLevel } from "../../types/services";
 
+import "../../styles/buttons.css";
 import "../../styles/components/services/service-selection.css";
 
 // ---------------------------------------------------------------------------
@@ -92,7 +93,7 @@ export default function ServiceSelection({
       <section className="service-selection__actions">
         {path.length > 0 && (
           <button
-            className="service-selection__button service-selection__button--secondary"
+            className="button button--secondary"
             onClick={onBack}
           >
             Tillbaka
@@ -100,7 +101,7 @@ export default function ServiceSelection({
         )}
 
         <button
-          className="service-selection__button service-selection__button--ghost"
+          className="button button--ghost"
           onClick={onHome}
         >
           Startsida

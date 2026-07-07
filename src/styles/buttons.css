@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Buttons
+   --------------------------------------------------------------------------
+   Shared button styles used throughout the application.
+
+   Design principles:
+   - Primary: Main call-to-action (Continue, Order, Add...)
+   - Secondary: Navigation (Back, Clear...)
+   - Ghost: Cancel or less prominent actions
+
+   All pages should reuse these classes to provide a consistent user
+   experience and simplify future styling changes.
+   ========================================================================== */
+
+/* ==========================================================================
+   Base button
+   ========================================================================== */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 140px;
+  min-height: 44px;
+
+  padding: 0.85rem 1.25rem;
+
+  border: none;
+  border-radius: 12px;
+
+  font: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* ==========================================================================
+   Primary action
+   ========================================================================== */
+
+.button--primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.button--primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(0, 72, 143, 0.25);
+}
+
+/* ==========================================================================
+   Secondary action
+   ========================================================================== */
+
+.button--secondary {
+  background: #dbe8f6;
+  color: var(--color-primary);
+}
+
+.button--secondary:hover:not(:disabled) {
+  background: #cfe2f5;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Ghost action
+   ========================================================================== */
+
+.button--ghost {
+  background: white;
+
+  color: var(--color-primary);
+
+  border: 1px solid rgba(0, 72, 143, 0.35);
+}
+
+.button--ghost:hover:not(:disabled) {
+  background: #f8fbff;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Disabled buttons
+   ========================================================================== */
+
+.button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+
+  transform: none;
+  box-shadow: none;
+}

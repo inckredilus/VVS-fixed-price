@@ -46,7 +46,7 @@
   display: block;
   margin: 0 auto;
 
-  border-radius: 12px;
+  border-radius: 4px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
@@ -62,7 +62,7 @@
 .service-detail__order-panel {
   background: white;
   padding: 1.25rem;
-  border-radius: 12px;
+  border-radius: 4px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
@@ -156,42 +156,11 @@
   margin-bottom: 1rem;
 }
 
-.service-detail__button {
-  padding: 0.85rem 1.2rem;
-
-  border-radius: 10px;
-  border: none;
-
-  font: inherit;
-  font-weight: 600;
-
-  cursor: pointer;
-}
-
-.service-detail__button--primary {
-  background: var(--color-primary);
-  color: white;
-}
-
-.service-detail__button--secondary {
-  background: #e6eef7;
-  color: var(--color-primary);
-}
-
-.service-detail__button--ghost {
-  background: transparent;
-  color: var(--color-primary);
-  border: 1px solid rgba(0, 72, 143, 0.35);
-}
-
-.service-detail__button:disabled,
 .service-detail__quantity-button:disabled,
 .service-detail__clear-button:disabled {
   opacity: 0.45;
   cursor: not-allowed;
 }
-
-/* Service reference */
 
 .service-detail__service-id {
   color: #6b7280;

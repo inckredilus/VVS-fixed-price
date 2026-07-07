@@ -3,6 +3,7 @@ import type {
   CustomerDetails,
 } from "../../types/services";
 
+import "../../styles/buttons.css";
 import { shouldShowEquipment } from "../../utils/orderHelpers";
 import "../../styles/components/services/order-confirmation.css";
 
@@ -200,21 +201,21 @@ export default function OrderConfirmation({
 
       <div className="order-confirmation__actions">
         <button
-          className="order-confirmation__button order-confirmation__button--secondary"
+          className="button button--secondary"
           onClick={onBack}
         >
           Tillbaka
         </button>
 
        <button
-          className="order-confirmation__button order-confirmation__button--primary"
+          className="button button--primary"
           onClick={onSubmit}
         >
           Beställ
         </button>
 
         <button
-          className="order-confirmation__button order-confirmation__button--ghost"
+          className="button button--ghost"
           onClick={onCancel}
         >
           Avbryt

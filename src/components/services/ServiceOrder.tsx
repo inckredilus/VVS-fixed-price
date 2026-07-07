@@ -1,3 +1,4 @@
+import "../../styles/buttons.css";
 import type { CartItem } from "../../types/services";
 import { shouldShowEquipment } from "../../utils/orderHelpers";
 import "../../styles/components/services/service-order.css";
@@ -154,21 +155,21 @@ export default function ServiceOrder({
 
       <div className="service-order__actions">
         <button 
-          className="service-order__button service-order__button--secondary"
+          className="button button--secondary"
           onClick={onBack}
         >
           Tillbaka
         </button>
 
         <button 
-          className="service-order__button service-order__button--primary"
+          className="button button--primary"
           onClick={onContinue}
         >
           Fortsätt
         </button>
 
         <button 
-          className="service-order__button service-order__button--ghost"
+          className="button button--ghost"
           onClick={onCancel}
         >
           Avbryt

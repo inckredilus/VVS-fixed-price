@@ -14,7 +14,7 @@
   text-align: center;
 
   color: white;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
 
   background-image:
@@ -162,7 +162,7 @@
 .home__card {
   background: white;
   padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: 4px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 

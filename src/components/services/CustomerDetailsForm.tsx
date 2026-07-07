@@ -1,3 +1,4 @@
+import "../../styles/buttons.css";
 import type { CustomerDetails } from "../../types/services";
 import "../../styles/components/services/customer-details-form.css";
 
@@ -216,27 +217,27 @@ const isFormComplete =
 
       <div className="customer-form__actions">
         <button 
-          className="customer-form__button customer-form__button--secondary"
+          className="button button--secondary"
           onClick={onBack}>
             Tillbaka
           </button>
 
         <button 
-          className="customer-form__button customer-form__button--primary"
+          className="button button--primary"
           onClick={onContinue} 
           disabled={!isFormComplete}>
             Fortsätt
         </button>
 
         <button
-          className="customer-form__button customer-form__button--secondary"
+          className="button button--secondary"
           onClick={clearCustomerDetails}
         >
           Rensa
         </button>
         
         <button 
-          className="customer-form__button customer-form__button--ghost"
+          className="button button--ghost"
           onClick={onCancel}>
             Avbryt
         </button>

@@ -145,43 +145,6 @@
   margin-top: 2rem;
 }
 
-.customer-form__button {
-  min-width: 140px;
-
-  padding: 0.85rem 1.2rem;
-
-  border: none;
-  border-radius: 10px;
-
-  font: inherit;
-  font-weight: 600;
-
-  cursor: pointer;
-}
-
-.customer-form__button--primary {
-  background: var(--color-primary);
-  color: white;
-}
-
-.customer-form__button--secondary {
-  background: #e6eef7;
-  color: var(--color-primary);
-}
-
-.customer-form__button--ghost {
-  background: transparent;
-
-  color: var(--color-primary);
-
-  border: 1px solid rgba(0, 72, 143, 0.35);
-}
-
-.customer-form__button:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-
 /* ==========================================================================
    Desktop adjustments
    ========================================================================== */
