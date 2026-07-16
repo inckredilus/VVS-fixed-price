@@ -32,8 +32,8 @@
 .order-confirmation__card {
   margin-bottom: 1.5rem;
   padding: 1.5rem;
-  background: white;
-  border-radius: 12px;
+  background: var(--card-background);
+  border-radius: var(--card-radius);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
@@ -68,7 +68,7 @@
   text-align: center;
   background: #e6eef7;
   color: var(--color-primary);
-  border-radius: 12px;
+  border-radius: var(--card-radius);
 }
 
 .order-confirmation__total h2 {

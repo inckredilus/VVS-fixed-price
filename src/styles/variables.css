@@ -1,4 +1,5 @@
 /* src/styles/variables.css */
+
 :root {
   --color-primary: #00488f;
   --color-secondary: #0074c2;
@@ -10,4 +11,16 @@
   --font-family-base: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-size-base: 16px;
   --spacing-base: 1rem;
+
+  /* ==========================================================================
+   Design system
+   --------------------------------------------------------------------------
+   Global visual constants used throughout the application.
+   Adjust these values to change the overall look and feel without modifying
+   individual page styles.
+   ========================================================================== */
+  --page-background: #eef5fb;
+  --card-background: #ffffff;
+  --card-radius: 4px;
+  --button-radius: 12px;
 }
